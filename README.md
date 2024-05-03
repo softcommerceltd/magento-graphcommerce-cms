@@ -16,11 +16,11 @@ This module extends PageBuilder's functionality by introducing custom components
 - Use `cmsRowQuote` component to build `RowQuote` rich text content;
 
 ## Supported PageBuilder Elements
-- `gc-asset` - used to provide images and video files;
-- `gc-heading` - used to provide a heading for components that require a title.
+- `gc-asset` - used to serve images and video files;
+- `gc-heading` - used to provide a heading for components that require titles.
 - `gc-page-links` - used to provide links that support either a direct, product, category or CMS page URL;
 - `gc-products` - used to provide product listing defined by either a category, SKUs or a custom rule;
-- `gc-richtext` - used to provide content build with the help of wysiwyg;
+- `gc-richtext` - used to provide content built with the help of wysiwyg;
 
 ## Compatibility
 - Open Source >= 2.4.4
