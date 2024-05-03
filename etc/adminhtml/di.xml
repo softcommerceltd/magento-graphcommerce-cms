@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Cms\Api\PageRepositoryInterface">
+        <plugin name="gc_metadata_handler" type="SoftCommerce\GraphCommerceCms\Plugin\CmsPageRepositoryPlugin" sortOrder="0" />
+    </type>
+    <!-- PageBuilder Components / Elements -->
+    <virtualType name="AppearanceSourceGcRowContainer" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AppearanceSourceGcAsset" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- virtualType name="AppearanceSourceGcHeroBanner" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType -->
+    <virtualType name="AppearanceSourceGcPageLinks" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">small</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AppearanceSourceRichText" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AppearanceSourceGcRowLinks" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- virtualType name="AppearanceSourceGcRowProduct" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType -->
+    <virtualType name="AppearanceSourceGcProducts" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">grid</item>
+                    <item name="title" xsi:type="string" translate="true">Grid Layout</item>
+                    <item name="icon" xsi:type="string">SoftCommerce_GraphCommerceCms::css/images/content-type/gc-products/appearance/grid.svg</item>
+                </item>
+                <item name="1" xsi:type="array">
+                    <item name="value" xsi:type="string">swipeable</item>
+                    <item name="title" xsi:type="string" translate="true">Swipeable Layout</item>
+                    <item name="icon" xsi:type="string">SoftCommerce_GraphCommerceCms::css/images/content-type/gc-products/appearance/swipeable.svg</item>
+                </item>
+                <item name="2" xsi:type="array">
+                    <item name="value" xsi:type="string">backstory</item>
+                    <item name="title" xsi:type="string" translate="true">Backstory Layout</item>
+                    <item name="icon" xsi:type="string">SoftCommerce_GraphCommerceCms::css/images/content-type/gc-products/appearance/backstory.svg</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+    <virtualType name="AppearanceSourceFaq" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AppearanceSourceFaqItem" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\PageBuilder\Model\Config\ContentType\AdditionalData\Provider\Wysiwyg\Config">
+        <arguments>
+            <argument name="editors" xsi:type="array">
+                <item name="mage/adminhtml/wysiwyg/tiny_mce/tinymce5Adapter" xsi:type="array">
+                    <item name="component_initializers" xsi:type="array">
+                        <item name="gc-richtext" xsi:type="string">Magento_PageBuilder/js/content-type/text/wysiwyg/tinymce/component-initializer</item>
+                    </item>
+                    <item name="config_modifiers" xsi:type="array">
+                        <item name="gc-richtext" xsi:type="string">Magento_PageBuilder/js/content-type/text/wysiwyg/tinymce/config-modifier</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Extend Wysiwyg Editor Configuration -->
+    <type name="Magento\PageBuilder\Model\Wysiwyg\DefaultConfigProvider">
+        <plugin name="gc_wysiwyg_config_plugin" type="SoftCommerce\GraphCommerceCms\Plugin\PageBuilder\WysiwygDefaultConfigProviderPlugin" sortOrder="999" />
+    </type>
+    <!-- plugins -->
+    <!-- type name="Magento\MediaGalleryIntegration\Plugin\SaveImageInformation">
+        <arguments>
+            <argument name="imageExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="mov" xsi:type="string">mov</item>
+                <item name="mp4" xsi:type="string">mp4</item>
+                <item name="webm" xsi:type="string">webm</item>
+                <item name="ogg" xsi:type="string">ogg</item>
+            </argument>
+        </arguments>
+    </type -->
+    <virtualType name="Magento\VideoGallerySynchronization\Model\SynchronizeFiles" type="Magento\MediaGallerySynchronization\Model\SynchronizeFiles">
+        <arguments>
+            <argument name="importFiles" xsi:type="object">Magento\MediaGallerySynchronization\Model\ImportMediaAsset</argument>
+        </arguments>
+    </virtualType>
+    <type name="SoftCommerce\GraphCommerceCms\Controller\Adminhtml\Pagebuilder\Asset\Upload">
+        <arguments>
+            <argument name="synchronizeFiles" xsi:type="object">Magento\VideoGallerySynchronization\Model\SynchronizeFiles</argument>
+            <argument name="allowedFileExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+                <item name="svg" xsi:type="string">svg</item>
+                <item name="mov" xsi:type="string">mov</item>
+                <item name="mp4" xsi:type="string">mp4</item>
+                <item name="webm" xsi:type="string">webm</item>
+                <item name="ogg" xsi:type="string">ogg</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="png" xsi:type="string">image/png</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="svg" xsi:type="string">image/svg+xml</item>
+                <item name="mov" xsi:type="string">video/mov</item>
+                <item name="mp4" xsi:type="string">video/mp4</item>
+                <item name="quicktime" xsi:type="string">video/quicktime</item>
+                <item name="ogg" xsi:type="string">video/ogg</item>
+                <item name="webm" xsi:type="string">video/webm</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

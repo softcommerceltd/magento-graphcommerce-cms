@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="general">
+        <field name="gc_metadata" formElement="textarea">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">block</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">GraphCommerce Metadata</label>
+                <dataScope>gc_metadata</dataScope>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                    <class name="admin__font-console">true</class>
+                </additionalClasses>
+                <notice translate="true">Used to build graphQL content.</notice>
+            </settings>
+        </field>
+    </fieldset>
+</form>

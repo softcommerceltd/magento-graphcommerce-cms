@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_type.xsd">
+    <type name="gc-richtext"
+          label="RichText"
+          component="Magento_PageBuilder/js/content-type"
+          preview_component="Magento_PageBuilder/js/content-type/text/preview"
+          form="pagebuilder_gc_richtext_form"
+          menu_section="gc_elements"
+          icon="icon-pagebuilder-text"
+          sortOrder="90"
+          translate="label">
+        <parents default_policy="deny">
+            <parent name="gc-hero-banner" policy="allow"/>
+            <parent name="gc-row-links" policy="allow"/>
+            <parent name="gc-row-product" policy="allow"/>
+            <parent name="gc-row-quote" policy="allow"/>
+        </parents>
+        <children default_policy="deny"/>
+        <is_system>true</is_system>
+        <appearances>
+            <appearance name="default"
+                        default="true"
+                        preview_template="SoftCommerce_GraphCommerceCms/content-type/gc-richtext/default/preview"
+                        master_template="Magento_PageBuilder/content-type/text/default/master"
+                        reader="Magento_PageBuilder/js/master-format/read/configurable">
+                <elements>
+                    <element name="main">
+                        <style name="text_align" source="text_align"/>
+                        <style name="border" source="border_style" converter="Magento_PageBuilder/js/converter/style/border-style"/>
+                        <style name="border_color" source="border_color"/>
+                        <style name="border_width" source="border_width" converter="Magento_PageBuilder/js/converter/style/remove-px"/>
+                        <style name="border_radius" source="border_radius" converter="Magento_PageBuilder/js/converter/style/remove-px"/>
+                        <style name="margins" storage_key="margins_and_padding" reader="Magento_PageBuilder/js/property/margins" converter="Magento_PageBuilder/js/converter/style/margins"/>
+                        <style name="padding" storage_key="margins_and_padding" reader="Magento_PageBuilder/js/property/paddings" converter="Magento_PageBuilder/js/converter/style/paddings"/>
+                        <attribute name="name" source="data-content-type"/>
+                        <attribute name="appearance" source="data-appearance"/>
+                        <html name="content" preview_converter="Magento_PageBuilder/js/converter/html/directive"/>
+                        <css name="css_classes"/>
+                    </element>
+                </elements>
+            </appearance>
+        </appearances>
+        <additional_data>
+            <item name="wysiwygConfig" xsi:type="array">
+                <item name="wysiwygConfigData" xsi:type="object">Magento\PageBuilder\Model\Config\ContentType\AdditionalData\Provider\Wysiwyg\Config</item>
+            </item>
+        </additional_data>
+    </type>
+</config>

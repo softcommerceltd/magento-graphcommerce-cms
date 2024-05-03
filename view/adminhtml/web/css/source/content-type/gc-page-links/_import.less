@@ -1,0 +1,30 @@
+//
+//  Page links styles
+//  _____________________________________________
+
+.icon-pagebuilder-gc-page-links {
+    content: url('@{baseDir}SoftCommerce_GraphCommerceCms/css/images/content-type/gc-page-links/appearance/icon-pagebuilder-gc-page-links.svg');
+    width: 18px;
+    height: 18px;
+    margin-bottom: -1px;
+}
+
+.pagebuilder-gc-page-links {
+    .placeholder-html-content {
+        * {
+            display: inline-block;
+        }
+
+        .separator {
+            &:before {
+                content: '|';
+                padding-left: .5rem;
+                padding-right: .5rem;
+            }
+        }
+    }
+    .preview-image {
+        max-width: 4rem;
+        border-radius: 50%;
+    }
+}

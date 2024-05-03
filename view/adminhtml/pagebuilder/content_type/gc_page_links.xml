@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_type.xsd">
+    <type name="gc-page-links"
+          label="Page Links"
+          component="Magento_PageBuilder/js/content-type"
+          preview_component="Magento_PageBuilder/js/content-type/preview"
+          form="pagebuilder_gc_page_links_form"
+          menu_section="gc_elements"
+          icon="icon-pagebuilder-gc-page-links"
+          sortOrder="2"
+          translate="label">
+        <parents default_policy="deny">
+            <parent name="gc-hero-banner" policy="allow"/>
+            <parent name="gc-row-links" policy="allow"/>
+            <parent name="gc-row-product" policy="allow"/>
+        </parents>
+        <children default_policy="deny"/>
+        <is_system>true</is_system>
+        <appearances>
+            <appearance name="default"
+                        default="true"
+                        preview_template="SoftCommerce_GraphCommerceCms/content-type/gc-page-links/default/preview"
+                        master_template="SoftCommerce_GraphCommerceCms/content-type/gc-page-links/default/master"
+                        reader="Magento_PageBuilder/js/master-format/read/configurable">
+                <elements>
+                    <element name="main">
+                        <attribute name="name" source="data-content-type"/>
+                        <attribute name="appearance" source="data-appearance"/>
+                        <css name="css_classes"/>
+                    </element>
+                    <element name="title">
+                        <html name="title"/>
+                    </element>
+                    <element name="link">
+                        <attribute name="url" reader="Magento_PageBuilder/js/property/link" persistence_mode="read"/>
+                        <attribute name="virtual_link_href" storage_key="url" source="href" converter="SoftCommerce_GraphCommerceCms/js/converter/attribute/link-href" persistence_mode="write"/>
+                        <attribute name="virtual_link_target" storage_key="url" source="target" converter="Magento_PageBuilder/js/converter/attribute/link-target" persistence_mode="write"/>
+                        <attribute name="virtual_link_type" storage_key="url" source="data-link-type" converter="Magento_PageBuilder/js/converter/attribute/link-type" persistence_mode="write"/>
+                    </element>
+                    <element name="asset">
+                        <attribute name="asset" source="src" converter="Magento_PageBuilder/js/converter/attribute/src" preview_converter="Magento_PageBuilder/js/converter/attribute/preview/src"/>
+                    </element>
+                    <element name="content">
+                        <html name="content"/>
+                    </element>
+                </elements>
+            </appearance>
+        </appearances>
+        <additional_data>
+            <item name="uploaderConfig" xsi:type="array">
+                <item name="isShowImageUploadInstructions" xsi:type="boolean">true</item>
+                <item name="maxFileSize" xsi:type="string">4194304</item>
+                <item name="allowedExtensions" xsi:type="string">jpg jpeg gif png</item>
+                <item name="component" xsi:type="string">Magento_PageBuilder/js/form/element/image-uploader</item>
+                <item name="componentType" xsi:type="string">imageUploader</item>
+                <item name="dataScope" xsi:type="string">asset</item>
+                <item name="formElement" xsi:type="string">imageUploader</item>
+                <item name="uploaderConfig" xsi:type="array">
+                    <item name="url" xsi:type="object">Magento\PageBuilder\Model\Config\ContentType\AdditionalData\Provider\Uploader\SaveUrl</item>
+                </item>
+                <item name="previewTmpl" xsi:type="string">Magento_PageBuilder/form/element/uploader/preview</item>
+                <item name="template" xsi:type="string">Magento_PageBuilder/form/element/uploader/preview/image</item>
+                <item name="mediaGallery" xsi:type="array">
+                    <item name="openDialogUrl" xsi:type="object">Magento\PageBuilder\Model\Config\ContentType\AdditionalData\Provider\Uploader\OpenDialogUrl</item>
+                    <item name="openDialogTitle" xsi:type="string" translate="true">Insert Images...</item>
+                    <item name="initialOpenSubpath" xsi:type="string">assets</item>
+                    <item name="storeId" xsi:type="object">Magento\PageBuilder\Model\Config\ContentType\AdditionalData\Provider\StoreId</item>
+                </item>
+                <item name="validation" xsi:type="array">
+                    <item name="required-entry" xsi:type="boolean">true</item>
+                </item>
+            </item>
+            <item name="wysiwygConfig" xsi:type="array">
+                <item name="wysiwygConfigData" xsi:type="object">Magento\PageBuilder\Model\Config\ContentType\AdditionalData\Provider\Wysiwyg\Config</item>
+            </item>
+        </additional_data>
+    </type>
+</config>

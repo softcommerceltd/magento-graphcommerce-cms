@@ -1,0 +1,113 @@
+# Copyright © Soft Commerce Ltd. All rights reserved.
+# See LICENSE.txt for license details.
+
+type Query {
+    # cmsPages: CmsPages @resolver(class: "Rbj\\CmsPagesGraphQl\\Model\\Resolver\\CmsPages") @doc(description: "Get all CMS static pages from store.")
+    CmsPageList (
+        identifiers: [String] @doc(description: "An array of Page IDs.")
+        pageSize: Int = 20
+        currentPage: Int = 1
+    ): CmsPageList @resolver(class: "SoftCommerce\\GraphCommerceCms\\Model\\Resolver\\CmsPageList") @doc(description: "Return information about CMS pages.") @cache(cacheIdentity: "SoftCommerce\\GraphCommerceCms\\Model\\Resolver\\CmsPageList\\Identity")
+    ## extend CMS page
+    cmsPage (
+        id: Int @doc(description: "The ID of the CMS page.") @deprecated(reason: "Use `identifier` instead.")
+        identifier: String @doc(description: "The identifier of the CMS page.")
+    ): CmsPage @resolver(class: "SoftCommerce\\GraphCommerceCms\\Model\\Resolver\\CmsPage") @doc(description: "Return details about a CMS page.") @cache(cacheIdentity: "Magento\\CmsGraphQl\\Model\\Resolver\\Page\\Identity")
+    ## extend CMS block
+    cmsBlocks (
+        identifiers: [String] @doc(description: "An array of CMS block IDs.")
+    ): CmsBlocks @resolver(class: "SoftCommerce\\GraphCommerceCms\\Model\\Resolver\\CmsBlocks") @doc(description: "Return information about CMS blocks.") @cache(cacheIdentity: "Magento\\CmsGraphQl\\Model\\Resolver\\Block\\Identity")
+}
+
+type CmsPageList @doc(description: "Contains an array of Page items.") {
+    items: [CmsPageItem] @doc(description: "An array of CMS Pages.")
+}
+
+type CmsPageItem  @doc(description: "Contains details about a specific CMS page.") {
+    identifier: String @doc(description: "The ID of a CMS page.")
+    title: String @doc(description: "The name that appears in the breadcrumb trail navigation and in the browser title bar and tab.")
+    content: String @doc(description: "The content of the CMS page in raw HTML.")
+    cmsRowContent: [CmsRowContentInterface] @doc(description: "Cms row content.")
+    content_heading: String @doc(description: "The heading that displays at the top of the CMS page.")
+    meta_title: String @doc(description: "A page title that is indexed by search engines and appears in search results listings.")
+    meta_description: String @doc(description: "A brief description of the page for search results listings.")
+    meta_keywords: String @doc(description: "A brief description of the page for search results listings.")
+}
+
+## extend CMS block
+type CmsBlock @doc(description: "Contains details about a specific CMS block.") {
+    cmsRowContent: [CmsRowContentInterface] @doc(description: "Cms row content.")
+}
+
+## extend CMS page
+type CmsPage implements RoutableInterface @doc(description: "Contains details about a CMS page.") {
+    cmsRowContent: [CmsRowContentInterface] @doc(description: "Cms row content.")
+}
+
+## CMS Row Content Components
+type CmsAsset @doc(description: "CMS Asset.") {
+    url: String! @doc(description: "Asset URL.")
+    width: String @doc(description: "Asset Width.")
+    height: String @doc(description: "Asset Height.")
+    mimeType: String! @doc(description: "Asset mime type.")
+    size: String @doc(description: "Asset size.")
+    alt: String @doc(description: "Asset ALT tag.")
+}
+
+type CmsPageLinks @doc(description: "Cms Page Links.") {
+    id: String @doc(description: "CMS page links row ID.")
+    title: String! @doc(description: "CMS page links title.")
+    url: String! @doc(description: "CMS page links URL.")
+    asset: CmsAsset @doc(description: "CMS page links asset.")
+    description: CmsRichText @doc(description: "CMS page links rich text description.")
+}
+
+type CmsRichText @doc(description: "Cms RichText.") {
+    raw: CmsRichTextRawChildren @doc(description: "Cms RichText raw.")
+    html: String @doc(description: "Cms RichText HTML.")
+    text: String @doc(description: "Cms RichText Text.")
+}
+
+type CmsRichTextRawChildren @doc(description: "Cms RichText raw children items.") {
+    children: [CmsRichTextRawChildrenItem] @doc(description: "Cms RichText children raw items.")
+}
+
+type CmsRichTextRawChildrenItem @doc(description: "Cms RichText items.") {
+    type: String @doc(description: "Cms RichText raw.")
+    children: [CmsRichTextRawChildrenItemText] @doc(description: "Cms RichText raw item.")
+}
+
+type CmsRichTextRawChildrenItemText @doc(description: "Cms RichText item.") {
+    bold: Boolean @doc(description: "Cms RichText raw.")
+    text: String! @doc(description: "Cms RichText raw.")
+}
+
+### Cms Row Content Types
+interface CmsRowContentInterface @typeResolver(class: "SoftCommerce\\GraphCommerceCms\\Model\\Resolver\\CmsRowContentInterfaceTypeComposite") @doc(description: "Cms row content type composite resolver.") {
+    id: String @doc(description: "Content row ID.")
+    pageLinks: [CmsPageLinks] @doc(description: "Content row page links.")
+}
+type CmsRowHeroBanner implements CmsRowContentInterface, RoutableInterface @doc(description: "Defines a CMS row hero banner.") {
+    heroAsset: CmsAsset! @doc(description: "Hero banner asset.")
+    copy: CmsRichText @doc(description: "Hero banner text copy.")
+}
+type CmsRowLinks implements CmsRowContentInterface, RoutableInterface @doc(description: "Defines an array of CMS row links.") {
+    title: String! @doc(description: "CMS row links title.")
+    linksVariant: String! @doc(description: "CMS row links variant.")
+    rowLinksCopy: CmsRichText @doc(description: "CMS row links text copy.")
+}
+type CmsRowProduct implements CmsRowContentInterface, RoutableInterface @doc(description: "Defines an array of CMS row products.") {
+    title: String! @doc(description: "CMS row links title.")
+    variant: String! @doc(description: "CMS row links variant.")
+    identity: String! @doc(description: "CMS row links variant.")
+    asset: CmsAsset @doc(description: "CMS page links asset.")
+    productCopy: CmsRichText @doc(description: "CMS row links text copy.")
+}
+type CmsRowSpecialBanner implements CmsRowContentInterface, RoutableInterface @doc(description: "Defines a arow special banner.") {
+    topic: String! @doc(description: "Special banner topic.")
+    asset: CmsAsset @doc(description: "CMS page links asset.")
+    copy: CmsRichText @doc(description: "CMS special banner text.")
+}
+type CmsRowQuote implements CmsRowContentInterface @doc(description: "Defines a arow special banner.") {
+    quote: CmsRichText @doc(description: "CMS row quote text.")
+}

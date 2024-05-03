@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <!-- cms_block -->
+    <table name="cms_block">
+        <column xsi:type="longtext" name="gc_metadata" nullable="true" comment="GraphCommerce Metadata"/>
+    </table>
+    <!-- cms_page -->
+    <table name="cms_page">
+        <column xsi:type="longtext" name="gc_metadata" nullable="true" comment="GraphCommerce Metadata"/>
+    </table>
+</schema>

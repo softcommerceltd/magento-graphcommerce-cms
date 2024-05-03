@@ -1,0 +1,31 @@
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+
+<div class="pagebuilder-content-type pagebuilder-gc-element pagebuilder-gc-page-links pagebuilder-html" event="{ mouseover: onMouseOver, mouseout: onMouseOut }, mouseoverBubble: false">
+    <div class="pagebuilder-display-label" text="function () { return displayLabel().toUpperCase(); }()"></div>
+    <div class="placeholder-html-code" if="data.link.attributes()" attr="data.link.attributes" css="data.link.css" ko-style="data.link.style">
+        <div class="placeholder-html-content">
+            <span class="separator pe-4" if="data.link.attributes()['data-link-type'] === 'default'"
+                  text="data.link.attributes().href"
+                  attr="data.link.attributes"
+                  css="data.link.css">
+            </span>
+            <span class="separator pe-4" if="data.link.attributes()['data-link-type'] !== 'default'"
+                  text="data.link.attributes()['data-link-type'] + ' link'"
+                  attr="data.link.attributes"
+                  css="data.link.css">
+            </span>
+            <img if="data.asset.attributes().src"
+                 class="separator preview-image"
+                 attr="data.asset.attributes"
+                 css="data.asset.css"
+                 ko-style="data.asset.style"/>
+        </div>
+    </div>
+    <div class="placeholder-html-empty" ifnot="data.title.html" attr="data.title.attributes" ko-style="data.title.style" translate="'Enter page links data'" css="data.title.css"></div>
+    <render args="getOptions().template"/>
+</div>

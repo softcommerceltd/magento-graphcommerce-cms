@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="SoftCommerce\GraphCommerceCms\Model\RetrieveCmsRowContentInterface" type="SoftCommerce\GraphCommerceCms\Model\RetrieveCmsRowContent"/>
+    <type name="SoftCommerce\GraphCommerceCms\Model\Resolver\CmsRowContentInterfaceTypeComposite">
+        <arguments>
+            <argument name="contentTypeIdMapping" xsi:type="array">
+                <item name="cmsRowContent" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_CONTENT</item>
+                <item name="cmsRowHeroBanner" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_HERO_BANNER</item>
+                <item name="cmsRowLinks" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_LINKS</item>
+                <item name="cmsRowProduct" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_PRODUCTS</item>
+                <item name="cmsRowSpecialBanner" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_SPECIAL_BANNER</item>
+                <item name="cmsRowQuote" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_QUOTE</item>
+                <item name="cmsBanner" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_BANNER</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

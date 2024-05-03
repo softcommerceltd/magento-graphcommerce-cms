@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="gc_cms" translate="label" type="text" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>GraphCommerce CMS</label>
+            <tab>softcommerce_tab</tab>
+            <resource>SoftCommerce_GraphCommerceCms::system_config</resource>
+            <group id="general" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="product_route_heading" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Web Settings</label>
+                    <frontend_model>SoftCommerce\Core\Block\Adminhtml\System\Config\Form\Field\FieldHeading</frontend_model>
+                </field>
+                <field id="product_route" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Product Route</label>
+                    <validate>validate-text validate-no-html-tags</validate>
+                    <tooltip>
+                        <![CDATA[By default, the products are routed to /p/[url], but if the structure was changed to a custom route (e.g. /product/[url]), please declare it here.]]>
+                    </tooltip>
+                    <comment><![CDATA[Enter custom product route if different to default (/p/)]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

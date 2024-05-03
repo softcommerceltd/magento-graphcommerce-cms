@@ -1,0 +1,29 @@
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+
+<div class="pagebuilder-affordance-row pagebuilder-content-type pagebuilder-content-type-affordance pagebuilder-gc-container"
+     attr="data.main.attributes"
+     ko-style="data.main.style"
+     css="data.main.css"
+     event="{ mouseover: onMouseOver, mouseout: onMouseOut }, mouseoverBubble: false">
+    <div class="pagebuilder-display-label" text="function () { return displayLabel().toUpperCase(); }()"></div>
+    <div class="placeholder-html-code" if="data.links_variant.attributes()" attr="data.links_variant.attributes" css="data.links_variant.css">
+        <div class="placeholder-html-content">
+            <span translate="'Links Variant'"></span>
+            <span>:</span>
+            <span class="separator ps-4"
+                  text="data.links_variant.html"
+                  attr="data.links_variant.attributes"
+                  css="data.links_variant.css">
+            </span>
+        </div>
+    </div>
+    <render args="getOptions().template"></render>
+    <div afterRender="afterRender">
+        <render args="childTemplate"></render>
+    </div>
+</div>

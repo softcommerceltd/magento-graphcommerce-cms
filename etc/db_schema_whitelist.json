@@ -1,0 +1,12 @@
+{
+    "cms_block": {
+        "column": {
+            "gc_metadata": true
+        }
+    },
+    "cms_page": {
+        "column": {
+            "gc_metadata": true
+        }
+    }
+}

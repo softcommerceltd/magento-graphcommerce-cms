@@ -1,0 +1,13 @@
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+
+<ul attr="data.main.attributes">
+    <li if="data.alt.attributes()" attr="data.alt.attributes" html="data.alt.html"/>
+    <li if="data.width.attributes()" attr="data.width.attributes" html="data.width.html"/>
+    <li if="data.height.attributes()" attr="data.height.attributes" html="data.height.html"/>
+    <li if="data.asset.attributes().src" attr="data.asset.attributes" html="data.asset.attributes().src"/>
+</ul>

@@ -1,0 +1,15 @@
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<div class="pagebuilder-content-type pagebuilder-gc-element pagebuilder-gc-richtext pagebuilder-html"
+     event="{ mouseover: onMouseOver, mouseout: onMouseOut }, mouseoverBubble: false" attr="data.main.attributes">
+    <div class="pagebuilder-display-label" text="function () { return displayLabel().toUpperCase(); }()"></div>
+    <div class="placeholder-html-code" if="data.main.html" attr="data.main.attributes" css="data.main.css" ko-style="data.main.style">
+        <div class="placeholder-html-content" text="data.main.html"></div>
+    </div>
+    <div class="placeholder-html-empty" ifnot="data.main.html" attr="data.main.attributes" ko-style="data.main.style" translate="'Enter text data'" css="data.main.css"></div>
+    <render args="getOptions().template"/>
+</div>

@@ -1,0 +1,27 @@
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* Soft Commerce Ltd                                                             *
+* -----------------                                                             *
+*                                                                               *
+* NOTICE OF LICENSE                                                             *
+*                                                                               *
+* This source file is subject to the Soft Commerce Ltd                          *
+* Open Software License ("OSL") v. 3.0                                          *
+* which is bundled with this package in the file LICENSE.txt.                   *
+* It is also available through the world-wide-web at this URL:                  *
+* https://softcommerce.co.uk/pub/license/index.html                             *
+*                                                                               *
+* If you did not receive a copy of the license and are unable to                *
+* obtain it through the world-wide-web, please email to                         *
+* admin@softcommerce.co.uk, so we can send you a copy immediately.              *
+*                                                                               *
+* DISCLAIMER                                                                    *
+*                                                                               *
+* Do not edit or add to this file if you wish to upgrade this extension to      *
+* newer versions in the future.                                                 *
+*                                                                               *
+* @category  SoftCommerce                                                       *
+* @package   SoftCommerce\Core                                                  *
+* @copyright © 2021 Soft Commerce Ltd. All Rights Reserved.                     *
+* @link      https://softcommerce.com                                           *
+* @license   https://softcommerce.co.uk/pub/license/index.html                  *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

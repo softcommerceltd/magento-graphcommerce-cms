@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_type.xsd">
+    <type name="gc-hero-banner"
+          label="Hero Banner"
+          component="Magento_PageBuilder/js/content-type-collection"
+          preview_component="SoftCommerce_GraphCommerceCms/js/content-type/gc-hero-banner/preview"
+          master_component="Magento_PageBuilder/js/content-type/master-collection"
+          form="pagebuilder_gc_row_container_form"
+          menu_section="gc_components"
+          icon="icon-pagebuilder-banner"
+          sortOrder="10"
+          translate="label">
+        <parents default_policy="deny">
+            <parent name="root-container" policy="allow"/>
+        </parents>
+        <children default_policy="deny">
+            <child name="gc-asset" policy="allow"/>
+            <child name="gc-page-links" policy="allow"/>
+            <child name="gc-richtext" policy="allow"/>
+            <child name="text" policy="allow"/>
+        </children>
+        <appearances>
+            <appearance name="default"
+                        default="true"
+                        preview_template="SoftCommerce_GraphCommerceCms/content-type/gc-row-container/default/preview"
+                        master_template="SoftCommerce_GraphCommerceCms/content-type/gc-row-container/default/master"
+                        reader="Magento_PageBuilder/js/master-format/read/configurable">
+                <elements>
+                    <element name="main">
+                        <attribute name="name" source="data-content-type"/>
+                        <attribute name="appearance" source="data-appearance"/>
+                        <css name="css_classes"/>
+                    </element>
+                </elements>
+            </appearance>
+        </appearances>
+    </type>
+</config>

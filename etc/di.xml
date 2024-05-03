@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- System Configuration -->
+    <preference for="SoftCommerce\GraphCommerceCms\Model\Config\SystemConfigInterface" type="SoftCommerce\GraphCommerceCms\Model\Config\SystemConfig"/>
+    <preference for="SoftCommerce\GraphCommerceCms\Model\UrlRewrites\GetUrlByEntityIdInterface" type="SoftCommerce\GraphCommerceCms\Model\UrlRewrites\GetUrlByEntityId"/>
+    <preference for="SoftCommerce\GraphCommerceCms\Model\DomConverterInterface" type="SoftCommerce\GraphCommerceCms\Model\DomConverter"/>
+    <preference for="SoftCommerce\GraphCommerceCms\Model\RowContentBuilderInterface" type="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder"/>
+    <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="cmsRowHeroBanner" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowHeroBanner</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_HERO_BANNER</item>
+                </item>
+                <item name="cmsRowLinks" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowLinksBuilder</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_ROW_LINKS</item>
+                </item>
+                <item name="cmsRowProduct" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowProductBuilder</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_ROW_PRODUCT</item>
+                </item>
+                <item name="cmsRowQuote" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowQuoteBuilder</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_ROW_QUOTE</item>
+                </item>
+                <item name="cmsRowSpecialBanner" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowSpecialBannerBuilder</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_ROW_SPECIAL_BANNER</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowHeroBanner">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="gc-asset" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\AssetBuilder</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_ASSET</item>
+                </item>
+                <item name="gc-page-links" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\PageLinksBuilder</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_PAGE_LINKS</item>
+                </item>
+                <item name="gc-richtext" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RichTextBuilder</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_RICHTEXT</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowLinksBuilder">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="gc-page-links" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\PageLinksBuilder</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_PAGE_LINKS</item>
+                </item>
+                <item name="gc-richtext" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RichTextBuilder</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_RICHTEXT</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\PageLinksBuilder">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="gc-asset" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\AssetBuilder</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::ASSET</item>
+                </item>
+                <item name="gc-richtext" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RichTextBuilder</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::CONTENT</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowProductBuilder">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="gc-asset" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\AssetBuilder</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_ASSET</item>
+                </item>
+                <item name="gc-page-links" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\PageLinksBuilder</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_PAGE_LINKS</item>
+                </item>
+                <item name="gc-richtext" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RichTextBuilder</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_RICHTEXT</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowQuoteBuilder">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="gc-richtext" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RichTextBuilder</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_RICHTEXT</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowSpecialBannerBuilder">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="gc-asset" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\AssetBuilder</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_ASSET</item>
+                </item>
+                <item name="gc-page-links" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\PageLinksBuilder</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_PAGE_LINKS</item>
+                </item>
+                <item name="gc-richtext" xsi:type="array">
+                    <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RichTextBuilder</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="typeId" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::GC_RICHTEXT</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

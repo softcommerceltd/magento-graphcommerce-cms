@@ -1,0 +1,13 @@
+<!--
+/**
+ * Copyright © Soft Commerce Ltd. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+
+<ul if="data.link.attributes().href" attr="data.main.attributes">
+    <li attr="data.title.attributes" html="data.title.html"/>
+    <li attr="data.link.attributes" ko-style="data.link.style" css="data.link.css" text="data.link.attributes().href"/>
+    <li if="data.asset.attributes().src" attr="data.asset.attributes" html="data.asset.attributes().src"/>
+    <li if="data.content.attributes()" attr="data.content.attributes" html="data.content.html"/>
+</ul>
