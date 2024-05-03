@@ -34,7 +34,7 @@ class RowHeroBanner extends AbstractBuilder implements ProcessorInterface, Metad
 
         $result = [];
         foreach ($context->getDomElement()->childNodes as $childNode) {
-            $response = $this->domConverter->fromDomToArray($childNode);
+            $response = $this->domConverter->execute($childNode);
             $responseData = $response[self::CHILDREN] ?? [];
             $typeId = $response[self::TYPE_ID] ?? null;
 

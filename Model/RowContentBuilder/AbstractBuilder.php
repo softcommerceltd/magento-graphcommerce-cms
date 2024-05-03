@@ -16,7 +16,7 @@ use Magento\MediaContentApi\Api\ExtractAssetsFromContentInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\Core\Framework\MessageStorageInterfaceFactory;
-use SoftCommerce\GraphCommerceCms\Model\DomConverterInterface;
+use SoftCommerce\GraphCommerceCms\Model\DomConverter\FromDomToArrayConverterInterface;
 use SoftCommerce\GraphCommerceCms\Model\RowContentBuilderInterface;
 use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
 use SoftCommerce\Profile\Model\ServiceAbstract\Service;
@@ -27,7 +27,7 @@ use function uniqid;
  */
 abstract class AbstractBuilder extends Service
 {
-    public const WIDGET_PATTERN = '/(.*?){{widget(.*?)}}/si';
+    protected const WIDGET_PATTERN = '/(.*?){{widget(.*?)}}/si';
 
     /**
      * @var ProcessorInterface[]
@@ -40,9 +40,9 @@ abstract class AbstractBuilder extends Service
     protected $context;
 
     /**
-     * @var DomConverterInterface
+     * @var FromDomToArrayConverterInterface
      */
-    protected DomConverterInterface $domConverter;
+    protected FromDomToArrayConverterInterface $domConverter;
 
     /**
      * @var ExtractAssetsFromContentInterface
@@ -60,7 +60,7 @@ abstract class AbstractBuilder extends Service
     protected StoreManagerInterface $storeManager;
 
     /**
-     * @param DomConverterInterface $domConverter
+     * @param FromDomToArrayConverterInterface $domConverter
      * @param ExtractAssetsFromContentInterface $extractAssetsFromContent
      * @param SerializerInterface $serializer
      * @param StoreManagerInterface $storeManager
@@ -71,7 +71,7 @@ abstract class AbstractBuilder extends Service
      * @param array $builders
      */
     public function __construct(
-        DomConverterInterface $domConverter,
+        FromDomToArrayConverterInterface $domConverter,
         ExtractAssetsFromContentInterface $extractAssetsFromContent,
         SerializerInterface $serializer,
         StoreManagerInterface $storeManager,

@@ -9,7 +9,7 @@
     <!-- System Configuration -->
     <preference for="SoftCommerce\GraphCommerceCms\Model\Config\SystemConfigInterface" type="SoftCommerce\GraphCommerceCms\Model\Config\SystemConfig"/>
     <preference for="SoftCommerce\GraphCommerceCms\Model\UrlRewrites\GetUrlByEntityIdInterface" type="SoftCommerce\GraphCommerceCms\Model\UrlRewrites\GetUrlByEntityId"/>
-    <preference for="SoftCommerce\GraphCommerceCms\Model\DomConverterInterface" type="SoftCommerce\GraphCommerceCms\Model\DomConverter"/>
+    <preference for="SoftCommerce\GraphCommerceCms\Model\DomConverter\FromDomToArrayConverterInterface" type="SoftCommerce\GraphCommerceCms\Model\DomConverter\FromDomToArrayConverter"/>
     <preference for="SoftCommerce\GraphCommerceCms\Model\RowContentBuilderInterface" type="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder"/>
     <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder">
         <arguments>

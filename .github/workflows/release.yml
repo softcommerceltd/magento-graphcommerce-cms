@@ -12,10 +12,9 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          name: 1.2.11 [CE|EE|ECE 2.4.0-2.4.7] 21 Mar 2024
-          tag_name: 1.2.11
+          name: 1.0.0 [CE|EE|ECE 2.4.0-2.4.7] 21 Mar 2024
+          tag_name: 1.0.0
           body: |-
-            ### softcommerce/module-graphcommerce-cms [1.0.0]
-            - **Compatibility**: Introduced support for PHP 8.3 [#2]
+            - **Feature**: New to provide additional functionality for GraphCommerce headless theme.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

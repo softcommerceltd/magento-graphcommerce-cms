@@ -6,9 +6,6 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Magento\Cms\Api\PageRepositoryInterface">
-        <plugin name="gc_metadata_handler" type="SoftCommerce\GraphCommerceCms\Plugin\CmsPageRepositoryPlugin" sortOrder="0" />
-    </type>
     <!-- PageBuilder Components / Elements -->
     <virtualType name="AppearanceSourceGcRowContainer" type="Magento\PageBuilder\Model\Source\VisualSelect">
         <arguments>
@@ -32,17 +29,6 @@
             </argument>
         </arguments>
     </virtualType>
-    <!-- virtualType name="AppearanceSourceGcHeroBanner" type="Magento\PageBuilder\Model\Source\VisualSelect">
-        <arguments>
-            <argument name="optionsSize" xsi:type="string">large</argument>
-            <argument name="optionsData" xsi:type="array">
-                <item name="0" xsi:type="array">
-                    <item name="value" xsi:type="string">default</item>
-                    <item name="title" xsi:type="string" translate="true">Default</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType -->
     <virtualType name="AppearanceSourceGcPageLinks" type="Magento\PageBuilder\Model\Source\VisualSelect">
         <arguments>
             <argument name="optionsSize" xsi:type="string">small</argument>
@@ -76,17 +62,6 @@
             </argument>
         </arguments>
     </virtualType>
-    <!-- virtualType name="AppearanceSourceGcRowProduct" type="Magento\PageBuilder\Model\Source\VisualSelect">
-        <arguments>
-            <argument name="optionsSize" xsi:type="string">large</argument>
-            <argument name="optionsData" xsi:type="array">
-                <item name="0" xsi:type="array">
-                    <item name="value" xsi:type="string">default</item>
-                    <item name="title" xsi:type="string" translate="true">Default</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType -->
     <virtualType name="AppearanceSourceGcProducts" type="Magento\PageBuilder\Model\Source\VisualSelect">
         <arguments>
             <argument name="optionsSize" xsi:type="string">large</argument>
@@ -109,34 +84,6 @@
             </argument>
         </arguments>
     </virtualType>
-
-
-
-
-
-
-    <virtualType name="AppearanceSourceFaq" type="Magento\PageBuilder\Model\Source\VisualSelect">
-        <arguments>
-            <argument name="optionsSize" xsi:type="string">large</argument>
-            <argument name="optionsData" xsi:type="array">
-                <item name="0" xsi:type="array">
-                    <item name="value" xsi:type="string">default</item>
-                    <item name="title" xsi:type="string" translate="true">Default</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType>
-    <virtualType name="AppearanceSourceFaqItem" type="Magento\PageBuilder\Model\Source\VisualSelect">
-        <arguments>
-            <argument name="optionsSize" xsi:type="string">large</argument>
-            <argument name="optionsData" xsi:type="array">
-                <item name="0" xsi:type="array">
-                    <item name="value" xsi:type="string">default</item>
-                    <item name="title" xsi:type="string" translate="true">Default</item>
-                </item>
-            </argument>
-        </arguments>
-    </virtualType>
     <type name="Magento\PageBuilder\Model\Config\ContentType\AdditionalData\Provider\Wysiwyg\Config">
         <arguments>
             <argument name="editors" xsi:type="array">
@@ -155,21 +102,6 @@
     <type name="Magento\PageBuilder\Model\Wysiwyg\DefaultConfigProvider">
         <plugin name="gc_wysiwyg_config_plugin" type="SoftCommerce\GraphCommerceCms\Plugin\PageBuilder\WysiwygDefaultConfigProviderPlugin" sortOrder="999" />
     </type>
-    <!-- plugins -->
-    <!-- type name="Magento\MediaGalleryIntegration\Plugin\SaveImageInformation">
-        <arguments>
-            <argument name="imageExtensions" xsi:type="array">
-                <item name="jpg" xsi:type="string">jpg</item>
-                <item name="jpeg" xsi:type="string">jpeg</item>
-                <item name="gif" xsi:type="string">gif</item>
-                <item name="png" xsi:type="string">png</item>
-                <item name="mov" xsi:type="string">mov</item>
-                <item name="mp4" xsi:type="string">mp4</item>
-                <item name="webm" xsi:type="string">webm</item>
-                <item name="ogg" xsi:type="string">ogg</item>
-            </argument>
-        </arguments>
-    </type -->
     <virtualType name="Magento\VideoGallerySynchronization\Model\SynchronizeFiles" type="Magento\MediaGallerySynchronization\Model\SynchronizeFiles">
         <arguments>
             <argument name="importFiles" xsi:type="object">Magento\MediaGallerySynchronization\Model\ImportMediaAsset</argument>

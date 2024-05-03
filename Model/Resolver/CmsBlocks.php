@@ -21,7 +21,7 @@ use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Store\Model\Store;
 use Magento\Widget\Model\Template\FilterEmulate;
 use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
-use SoftCommerce\GraphCommerceCms\Model\RetrieveCmsRowContentInterface;
+use SoftCommerce\GraphCommerceCms\Model\RowContentBuilderInterface;
 use function is_numeric;
 
 /**
@@ -40,9 +40,9 @@ class CmsBlocks implements ResolverInterface
     private FilterEmulate $widgetFilter;
 
     /**
-     * @var RetrieveCmsRowContentInterface
+     * @var RowContentBuilderInterface
      */
-    private RetrieveCmsRowContentInterface $retrieveCmsRowContent;
+    private RowContentBuilderInterface $rowContentBuilder;
 
     /**
      * @var SearchCriteriaBuilder
@@ -52,18 +52,18 @@ class CmsBlocks implements ResolverInterface
     /**
      * @param BlockRepositoryInterface $blockRepository
      * @param FilterEmulate $widgetFilter
-     * @param RetrieveCmsRowContentInterface $retrieveCmsRowContent
+     * @param RowContentBuilderInterface $rowContentBuilder
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      */
     public function __construct(
         BlockRepositoryInterface $blockRepository,
         FilterEmulate $widgetFilter,
-        RetrieveCmsRowContentInterface $retrieveCmsRowContent,
+        RowContentBuilderInterface $rowContentBuilder,
         SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         $this->blockRepository = $blockRepository;
         $this->widgetFilter = $widgetFilter;
-        $this->retrieveCmsRowContent = $retrieveCmsRowContent;
+        $this->rowContentBuilder = $rowContentBuilder;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
     }
 
@@ -177,7 +177,21 @@ class CmsBlocks implements ResolverInterface
             BlockInterface::IDENTIFIER => $block->getIdentifier(),
             BlockInterface::TITLE => $block->getTitle(),
             BlockInterface::CONTENT => $renderedContent,
-            MetadataInterface::CMS_ROW_CONTENT => $this->retrieveCmsRowContent->execute($block)
+            MetadataInterface::CMS_ROW_CONTENT => $this->getRowContentData($block)
         ];
+    }
+
+    /**
+     * @param BlockInterface $page
+     * @return array
+     */
+    private function getRowContentData(BlockInterface $page): array
+    {
+        $this->rowContentBuilder->execute(
+            $page->getData('gc_metadata'),
+            (int) $page->getStoreId()
+        );
+
+        return $this->rowContentBuilder->getDataStorage()->getData();
     }
 }

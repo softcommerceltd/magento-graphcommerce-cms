@@ -36,7 +36,7 @@ class RowLinksBuilder extends AbstractBuilder implements ProcessorInterface, Met
 
         $result = [];
         foreach ($context->getDomElement()->childNodes as $childNode) {
-            $response = $this->domConverter->fromDomToArray($childNode);
+            $response = $this->domConverter->execute($childNode);
             $typeId = $response[self::TYPE_ID] ?? null;
 
             if (!$typeId || !$metadata = $this->metaDataMapping[$typeId] ?? null) {

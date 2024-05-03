@@ -16,9 +16,9 @@ use Magento\Store\Model\StoreManagerInterface;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\Core\Framework\MessageStorageInterfaceFactory;
 use SoftCommerce\GraphCommerceCms\Model\Config\SystemConfigInterface;
-use SoftCommerce\GraphCommerceCms\Model\UrlRewrites\GetUrlByEntityIdInterface;
-use SoftCommerce\GraphCommerceCms\Model\DomConverterInterface;
+use SoftCommerce\GraphCommerceCms\Model\DomConverter\FromDomToArrayConverterInterface;
 use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
+use SoftCommerce\GraphCommerceCms\Model\UrlRewrites\GetUrlByEntityIdInterface;
 use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
 use function pathinfo;
 use function preg_match;
@@ -55,7 +55,7 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
     /**
      * @param GetUrlByEntityIdInterface $getUrlByEntityId
      * @param SystemConfigInterface $systemConfig
-     * @param DomConverterInterface $domConverter
+     * @param FromDomToArrayConverterInterface $domConverter
      * @param ExtractAssetsFromContentInterface $extractAssetsFromContent
      * @param SerializerInterface $serializer
      * @param StoreManagerInterface $storeManager
@@ -68,7 +68,7 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
     public function __construct(
         GetUrlByEntityIdInterface $getUrlByEntityId,
         SystemConfigInterface $systemConfig,
-        DomConverterInterface $domConverter,
+        FromDomToArrayConverterInterface $domConverter,
         ExtractAssetsFromContentInterface $extractAssetsFromContent,
         SerializerInterface $serializer,
         StoreManagerInterface $storeManager,

@@ -13,6 +13,7 @@ use DOMElement;
 use DOMException;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Exception\LocalizedException;
+use Psr\Log\LoggerInterface;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\Core\Framework\MessageStorageInterfaceFactory;
 use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
@@ -33,6 +34,11 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
     private ?DOMElement $domElement = null;
 
     /**
+     * @var LoggerInterface
+     */
+    private LoggerInterface $logger;
+
+    /**
      * @var int|null
      */
     private ?int $storeId = null;
@@ -40,26 +46,33 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
     /**
      * @param DataStorageInterfaceFactory $dataStorageFactory
      * @param MessageStorageInterfaceFactory $messageStorageFactory
+     * @param LoggerInterface $logger
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
-     * @param ProcessorInterface[] $builders
+     * @param array $builders
      */
     public function __construct(
         DataStorageInterfaceFactory $dataStorageFactory,
         MessageStorageInterfaceFactory $messageStorageFactory,
+        LoggerInterface $logger,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         array $data = [],
         array $builders = []
     ) {
+        $this->logger = $logger;
         $this->builders = $this->initServices($builders, true);
         $this->initTypeInstances($this, $this->builders);
         parent::__construct($dataStorageFactory, $messageStorageFactory, $searchCriteriaBuilder, $data);
     }
 
+    /**
+     * @param string $html
+     * @param int $storeId
+     * @inheritDoc
+     */
     public function execute(string $html, int $storeId): void
     {
         $this->initialize();
-        // var_dump('$html', $html);
 
         $this->storeId = $storeId;
         $this->domDocument = $this->createDomDocument($html);
@@ -76,11 +89,9 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
             try {
                 $this->processBuild($node);
             } catch (\Exception $e) {
-                // var_dump('error :::::: ' . $e->getMessage());
+                $this->logger->error($e->getMessage());
             }
         }
-
-        // var_dump('================ $result', $this->getDataStorage()->getData());
 
         $this->finalize();
     }
@@ -142,11 +153,6 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
         ) {
             return;
         }
-
-        // var_dump('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
-        // var_dump('----- $dataTypeId ::::: ' . $dataTypeId . ' -------------');
-        // var_dump('----- $processor ::::: ' . get_class($processor));
-        // var_dump('++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
 
         $processor->execute();
     }

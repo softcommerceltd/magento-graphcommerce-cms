@@ -26,7 +26,7 @@ use Magento\Store\Model\StoreManagerInterface;
 use Magento\Widget\Helper\Conditions;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\Core\Framework\MessageStorageInterfaceFactory;
-use SoftCommerce\GraphCommerceCms\Model\DomConverterInterface;
+use SoftCommerce\GraphCommerceCms\Model\DomConverter\FromDomToArrayConverterInterface;
 use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
 use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
 use function preg_match;
@@ -94,7 +94,7 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
      * @param Sorting $catalogSorting
      * @param SqlBuilder $sqlBuilder
      * @param Visibility $catalogProductVisibility
-     * @param DomConverterInterface $domConverter
+     * @param FromDomToArrayConverterInterface $domConverter
      * @param ExtractAssetsFromContentInterface $extractAssetsFromContent
      * @param SerializerInterface $serializer
      * @param StoreManagerInterface $storeManager
@@ -113,7 +113,7 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
         Sorting $catalogSorting,
         SqlBuilder $sqlBuilder,
         Visibility $catalogProductVisibility,
-        DomConverterInterface $domConverter,
+        FromDomToArrayConverterInterface $domConverter,
         ExtractAssetsFromContentInterface $extractAssetsFromContent,
         SerializerInterface $serializer,
         StoreManagerInterface $storeManager,
@@ -153,7 +153,7 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
 
         $result = [];
         foreach ($context->getDomElement()->childNodes as $childNode) {
-            $response = $this->domConverter->fromDomToArray($childNode);
+            $response = $this->domConverter->execute($childNode);
             $typeId = $response[self::TYPE_ID] ?? null;
 
             if (!$typeId || !$metadata = $this->metaDataMapping[$typeId] ?? null) {

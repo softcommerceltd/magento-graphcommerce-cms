@@ -6,28 +6,21 @@
 
 declare(strict_types=1);
 
-namespace SoftCommerce\GraphCommerceCms\Model;
+namespace SoftCommerce\GraphCommerceCms\Model\DomConverter;
 
 use DOMElement;
 use DOMText;
+use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
+
 /**
  * @inheritDoc
  */
-class DomConverter implements DomConverterInterface, MetadataInterface
+class FromDomToArrayConverter implements FromDomToArrayConverterInterface, MetadataInterface
 {
     /**
      * @inheritDoc
      */
-    public function fromArrayToDom(array $data): string
-    {
-        return '';
-    }
-
-    /**
-     * @param DOMElement $DOMElement
-     * @return array
-     */
-    public function fromDomToArray(DOMElement $DOMElement): array
+    public function execute(DOMElement $DOMElement): array
     {
         return $this->processDomToArray($DOMElement);
     }
@@ -36,7 +29,7 @@ class DomConverter implements DomConverterInterface, MetadataInterface
      * @param DOMElement|DOMText $element
      * @return array
      */
-    public function processDomToArray(DOMElement|DOMText $element): array
+    private function processDomToArray(DOMElement|DOMText $element): array
     {
         $result = [];
 

@@ -16,7 +16,7 @@ use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Widget\Model\Template\FilterEmulate;
 use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
-use SoftCommerce\GraphCommerceCms\Model\RetrieveCmsRowContentInterface;
+use SoftCommerce\GraphCommerceCms\Model\RowContentBuilderInterface;
 
 /**
  * @inheritDoc
@@ -34,23 +34,23 @@ class CmsPageList implements ResolverInterface
     private CollectionFactory $collectionFactory;
 
     /**
-     * @var RetrieveCmsRowContentInterface
+     * @var RowContentBuilderInterface
      */
-    private RetrieveCmsRowContentInterface $retrieveCmsRowContent;
+    private RowContentBuilderInterface $rowContentBuilder;
 
     /**
      * @param FilterEmulate $widgetFilter
      * @param CollectionFactory $collectionFactory
-     * @param RetrieveCmsRowContentInterface $retrieveCmsRowContent
+     * @param RowContentBuilderInterface $rowContentBuilder
      */
     public function __construct(
         FilterEmulate $widgetFilter,
         CollectionFactory $collectionFactory,
-        RetrieveCmsRowContentInterface $retrieveCmsRowContent
+        RowContentBuilderInterface $rowContentBuilder
     ) {
         $this->widgetFilter = $widgetFilter;
         $this->collectionFactory = $collectionFactory;
-        $this->retrieveCmsRowContent = $retrieveCmsRowContent;
+        $this->rowContentBuilder = $rowContentBuilder;
     }
 
     /**
@@ -99,7 +99,7 @@ class CmsPageList implements ResolverInterface
                     PageInterface::META_KEYWORDS => $page->getMetaKeywords(),
                     PageInterface::PAGE_ID => $page->getId(),
                     PageInterface::IDENTIFIER => $page->getIdentifier(),
-                    MetadataInterface::CMS_ROW_CONTENT => $this->retrieveCmsRowContent->execute($page),
+                    MetadataInterface::CMS_ROW_CONTENT => $this->getRowContentData($page),
                 ];
             }
         } catch (\Exception $e) {
@@ -107,5 +107,19 @@ class CmsPageList implements ResolverInterface
         }
 
         return $result;
+    }
+
+    /**
+     * @param PageInterface $page
+     * @return array
+     */
+    private function getRowContentData(PageInterface $page): array
+    {
+        $this->rowContentBuilder->execute(
+            $page->getData('gc_metadata'),
+            (int) $page->getStoreId()
+        );
+
+        return $this->rowContentBuilder->getDataStorage()->getData();
     }
 }

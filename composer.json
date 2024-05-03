@@ -4,7 +4,8 @@
     "require": {
         "php": "~8.0.0||~8.1.0||~8.2.0||~8.3.0",
         "magento/module-cms-graph-ql": "^100.4",
-        "magento/module-page-builder": "2.2.*"
+        "magento/module-page-builder": "2.2.*",
+        "softcommerce/module-profile": "*"
     },
     "type": "magento2-module",
     "license": [
