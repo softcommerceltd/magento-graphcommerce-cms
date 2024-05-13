@@ -66,8 +66,6 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
     }
 
     /**
-     * @param string $html
-     * @param int $storeId
      * @inheritDoc
      */
     public function execute(string $html, int $storeId): void

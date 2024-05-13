@@ -13,6 +13,7 @@ use Magento\Catalog\Setup\CategorySetupFactory;
 use Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
+use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
 
 /**
  * Class InstallCategoryRowContentAttribute
@@ -53,7 +54,7 @@ class InstallCategoryRowContentAttribute implements DataPatchInterface
 
         $categorySetup->addAttribute(
             $entityTypeId,
-            'gc_metadata',
+            MetadataInterface::GC_METADATA,
             [
                 'type' => 'text',
                 'label' => 'GraphCommerce Metadata',

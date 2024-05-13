@@ -115,11 +115,11 @@ class CmsPageList implements ResolverInterface
      */
     private function getRowContentData(PageInterface $page): array
     {
-        $this->rowContentBuilder->execute(
-            $page->getData('gc_metadata'),
-            (int) $page->getStoreId()
-        );
+        if (!$gcMetadata = $page->getData(MetadataInterface::GC_METADATA)) {
+            return [];
+        }
 
+        $this->rowContentBuilder->execute($gcMetadata, (int) $page->getStoreId());
         return $this->rowContentBuilder->getDataStorage()->getData();
     }
 }

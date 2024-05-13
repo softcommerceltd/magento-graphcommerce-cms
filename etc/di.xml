@@ -148,4 +148,27 @@
             </argument>
         </arguments>
     </type>
+    <!-- GraphQL schema config -->
+    <type name="Magento\Framework\GraphQl\Config\ConfigElementFactory">
+        <arguments>
+            <argument name="factoryMapByConfigElementType" xsi:type="array">
+                <item name="graphql_scalar" xsi:type="object">SoftCommerce\GraphCommerceCms\Framework\GraphQl\Config\Element\ScalarFactory</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\GraphQl\Schema\Type\TypeRegistry">
+        <arguments>
+            <argument name="configToTypeMap" xsi:type="array">
+                <item name="SoftCommerce\GraphCommerceCms\Framework\GraphQl\Config\Element\Scalar" xsi:type="string">SoftCommerce\GraphCommerceCms\Framework\GraphQl\Schema\Type\CmsRichTextASTType</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Magento\Framework\GraphQlSchemaStitching\Reader" type="Magento\Framework\GraphQlSchemaStitching\Common\Reader">
+        <arguments>
+            <argument name="readers" xsi:type="array">
+                <item name="scalarDynamicTypeReader" xsi:type="object">SoftCommerce\GraphCommerceCms\Framework\GraphQl\Config\ScalarDynamicTypeReader</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <preference for="Magento\Framework\GraphQlSchemaStitching\GraphQlReader" type="SoftCommerce\GraphCommerceCms\Framework\GraphQl\Schema\SchemaStitchingGraphQlReader"/>
 </config>

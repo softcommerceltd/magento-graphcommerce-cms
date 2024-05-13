@@ -137,6 +137,10 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
         }
 
         if ($result) {
+            if (!isset($result[self::TITLE])) {
+                $result[self::TITLE] = '';
+            }
+
             $result[self::GQL_ID] = $this->getUniqueId(self::GQL_PAGE_LINKS);
             $result[self::TYPE_ID] = self::GQL_PAGE_LINKS;
         }

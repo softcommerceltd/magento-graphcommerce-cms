@@ -12,9 +12,9 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          name: 1.0.0 [CE|EE|ECE 2.4.0-2.4.7] 21 Mar 2024
-          tag_name: 1.0.0
+          name: 1.0.1 [CE|EE|ECE 2.4.0-2.4.7] 13 May 2024
+          tag_name: 1.0.1
           body: |-
-            - **Feature**: New to provide additional functionality for GraphCommerce headless theme.
+            - **Enhancement**: Introduced support of custom scalar types for GraphQL schema [#1]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

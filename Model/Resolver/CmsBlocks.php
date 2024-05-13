@@ -182,16 +182,16 @@ class CmsBlocks implements ResolverInterface
     }
 
     /**
-     * @param BlockInterface $page
+     * @param BlockInterface $block
      * @return array
      */
-    private function getRowContentData(BlockInterface $page): array
+    private function getRowContentData(BlockInterface $block): array
     {
-        $this->rowContentBuilder->execute(
-            $page->getData('gc_metadata'),
-            (int) $page->getStoreId()
-        );
+        if (!$gcMetadata = $block->getData(MetadataInterface::GC_METADATA)) {
+            return [];
+        }
 
+        $this->rowContentBuilder->execute($gcMetadata, (int) $block->getStoreId());
         return $this->rowContentBuilder->getDataStorage()->getData();
     }
 }

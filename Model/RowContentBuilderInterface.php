@@ -10,6 +10,7 @@ namespace SoftCommerce\GraphCommerceCms\Model;
 
 use DOMDocument;
 use DOMElement;
+use DOMException;
 use SoftCommerce\Core\Framework\DataStorageInterface;
 use SoftCommerce\Core\Framework\MessageStorageInterface;
 
@@ -22,7 +23,7 @@ interface RowContentBuilderInterface
     /**
      * @param string $html
      * @param int $storeId
-     * @return void
+     * @throws DOMException
      */
     public function execute(string $html, int $storeId): void;
 
