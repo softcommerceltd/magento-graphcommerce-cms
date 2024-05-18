@@ -37,6 +37,8 @@ interface MetadataInterface
     public const TYPE_ID_CMS_ROW_SPECIAL_BANNER = 'CmsRowSpecialBanner';
     public const TYPE_ID_CMS_ROW_QUOTE = 'CmsRowQuote';
     public const TYPE_ID_CMS_BANNER = 'CmsBanner';
+    public const TYPE_ID_CMS_PAGE_LINK = 'CmsPageLink';
+    public const TYPE_ID_CMS_ROW_CONTENT_INTERFACE = 'CmsRowContentInterface';
 
     /**
      * ROW LINKS VARIANT

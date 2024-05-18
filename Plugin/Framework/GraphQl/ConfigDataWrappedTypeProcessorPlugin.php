@@ -14,6 +14,7 @@ use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Config\Element\FieldInterface;
 use Magento\Framework\GraphQl\Schema\TypeFactory;
 use Magento\Framework\GraphQl\Schema\TypeInterface;
+use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
 
 /**
  * @plugin ConfigDataWrappedTypeProcessorPlugin
@@ -21,6 +22,14 @@ use Magento\Framework\GraphQl\Schema\TypeInterface;
  */
 class ConfigDataWrappedTypeProcessorPlugin
 {
+    /**
+     * @var string[]
+     */
+    private array $requiredSchemaFields = [
+        MetadataInterface::TYPE_ID_CMS_ROW_CONTENT_INTERFACE,
+        MetadataInterface::TYPE_ID_CMS_PAGE_LINK
+    ];
+
     /**
      * @var TypeFactory
      */
@@ -76,10 +85,14 @@ class ConfigDataWrappedTypeProcessorPlugin
                 if ($field->areItemsRequired()) {
                     $object = $this->typeFactory->createNonNull($object);
                 }
-            } elseif ($field instanceof Field) {
-                if ($field->isRequired()) {
-                    $object = $this->typeFactory->createNonNull($object);
-                }
+            // Magento fails to read schema for nonNull values contained within the Object or an array items
+            // hence the following workaround to provide a nonNull list of itemsRequired.
+            // @todo: rise this issue with Magento GraphQL dev team
+            } elseif ($field instanceof Field
+                && $field->isRequired()
+                && in_array($field->getTypeName(), $this->requiredSchemaFields, true)
+            ) {
+                $object = $this->typeFactory->createNonNull($object);
             }
 
             return $this->typeFactory->createList($object);

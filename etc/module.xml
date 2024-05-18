@@ -10,7 +10,7 @@
         <sequence>
             <module name="Magento_CmsGraphQl"/>
             <module name="Magento_Pagebuilder"/>
-            <module name="SoftCommerce_Profile"/>
+            <module name="SoftCommerce_Core"/>
         </sequence>
     </module>
 </config>

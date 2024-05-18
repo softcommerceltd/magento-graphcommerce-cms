@@ -16,8 +16,8 @@ use Magento\Framework\Exception\LocalizedException;
 use Psr\Log\LoggerInterface;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\Core\Framework\MessageStorageInterfaceFactory;
-use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
-use SoftCommerce\Profile\Model\ServiceAbstract\Service;
+use SoftCommerce\Core\Framework\Processor\ProcessorInterface;
+use SoftCommerce\Core\Framework\Processor\Service;
 
 /**
  * @inheritDoc
@@ -25,12 +25,13 @@ use SoftCommerce\Profile\Model\ServiceAbstract\Service;
 class RowContentBuilder extends Service implements RowContentBuilderInterface, MetadataInterface
 {
     /**
-     * @var array
+     * @var DOMDocument|null
      */
-    private array $builders;
-
     private ?DOMDocument $domDocument = null;
 
+    /**
+     * @var DOMElement|null
+     */
     private ?DOMElement $domElement = null;
 
     /**
@@ -39,29 +40,34 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
     private LoggerInterface $logger;
 
     /**
+     * @var array
+     */
+    private array $processors;
+
+    /**
      * @var int|null
      */
     private ?int $storeId = null;
 
     /**
+     * @param LoggerInterface $logger
      * @param DataStorageInterfaceFactory $dataStorageFactory
      * @param MessageStorageInterfaceFactory $messageStorageFactory
-     * @param LoggerInterface $logger
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
-     * @param array $builders
+     * @param array $processors
      */
     public function __construct(
+        LoggerInterface $logger,
         DataStorageInterfaceFactory $dataStorageFactory,
         MessageStorageInterfaceFactory $messageStorageFactory,
-        LoggerInterface $logger,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         array $data = [],
-        array $builders = []
+        array $processors = []
     ) {
         $this->logger = $logger;
-        $this->builders = $this->initServices($builders, true);
-        $this->initTypeInstances($this, $this->builders);
+        $this->processors = $this->initServices($processors);
+        $this->initTypeInstances($this, $this->processors);
         parent::__construct($dataStorageFactory, $messageStorageFactory, $searchCriteriaBuilder, $data);
     }
 
@@ -90,8 +96,6 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
                 $this->logger->error($e->getMessage());
             }
         }
-
-        $this->finalize();
     }
 
     /**
@@ -161,7 +165,7 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
      */
     private function getProcessorInstance(string $typeId): ?ProcessorInterface
     {
-        return $this->builders[$typeId] ?? null;
+        return $this->processors[$typeId] ?? null;
     }
 
     /**

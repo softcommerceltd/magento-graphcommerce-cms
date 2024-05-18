@@ -12,9 +12,10 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          name: 1.0.1 [CE|EE|ECE 2.4.0-2.4.7] 13 May 2024
-          tag_name: 1.0.1
+          name: 1.0.2 [CE|EE|ECE 2.4.0-2.4.7] 18 May 2024
+          tag_name: 1.0.2
           body: |-
-            - **Enhancement**: Introduced support of custom scalar types for GraphQL schema [#1]
+            ### softcommerce/module-graphcommerce-cms [1.0.2]
+            - **Enhancement**: Remove dependency for `softcommerce/module-profile` in favour of `softcommerce/module-core`.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

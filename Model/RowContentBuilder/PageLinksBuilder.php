@@ -15,11 +15,11 @@ use Magento\MediaContentApi\Api\ExtractAssetsFromContentInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\Core\Framework\MessageStorageInterfaceFactory;
+use SoftCommerce\Core\Framework\Processor\ProcessorInterface;
 use SoftCommerce\GraphCommerceCms\Model\Config\SystemConfigInterface;
 use SoftCommerce\GraphCommerceCms\Model\DomConverter\FromDomToArrayConverterInterface;
 use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
 use SoftCommerce\GraphCommerceCms\Model\UrlRewrites\GetUrlByEntityIdInterface;
-use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
 use function pathinfo;
 use function preg_match;
 use function str_contains;
@@ -63,7 +63,7 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
      * @param MessageStorageInterfaceFactory $messageStorageFactory
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
-     * @param array $builders
+     * @param array $processors
      */
     public function __construct(
         GetUrlByEntityIdInterface $getUrlByEntityId,
@@ -76,7 +76,7 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
         MessageStorageInterfaceFactory $messageStorageFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         array $data = [],
-        array $builders = []
+        array $processors = []
     ) {
         $this->getUrlByEntityId = $getUrlByEntityId;
         $this->systemConfig = $systemConfig;
@@ -89,7 +89,7 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
             $messageStorageFactory,
             $searchCriteriaBuilder,
             $data,
-            $builders
+            $processors
         );
     }
 

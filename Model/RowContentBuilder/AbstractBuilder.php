@@ -16,16 +16,16 @@ use Magento\MediaContentApi\Api\ExtractAssetsFromContentInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\Core\Framework\MessageStorageInterfaceFactory;
+use SoftCommerce\Core\Framework\Processor\Processor;
+use SoftCommerce\Core\Framework\Processor\ProcessorInterface;
 use SoftCommerce\GraphCommerceCms\Model\DomConverter\FromDomToArrayConverterInterface;
 use SoftCommerce\GraphCommerceCms\Model\RowContentBuilderInterface;
-use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
-use SoftCommerce\Profile\Model\ServiceAbstract\Service;
 use function uniqid;
 
 /**
  * @inheritDoc
  */
-abstract class AbstractBuilder extends Service
+abstract class AbstractBuilder extends Processor
 {
     protected const WIDGET_PATTERN = '/(.*?){{widget(.*?)}}/si';
 
@@ -68,7 +68,7 @@ abstract class AbstractBuilder extends Service
      * @param MessageStorageInterfaceFactory $messageStorageFactory
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
-     * @param array $builders
+     * @param array $processors
      */
     public function __construct(
         FromDomToArrayConverterInterface $domConverter,
@@ -79,14 +79,13 @@ abstract class AbstractBuilder extends Service
         MessageStorageInterfaceFactory $messageStorageFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         array $data = [],
-        array $builders = []
+        array $processors = []
     ) {
         $this->domConverter = $domConverter;
         $this->extractAssetsFromContent = $extractAssetsFromContent;
         $this->serializer = $serializer;
         $this->storeManager = $storeManager;
-        $this->builders = $this->initServices($builders, true);
-        parent::__construct($dataStorageFactory, $messageStorageFactory, $searchCriteriaBuilder, $data);
+        parent::__construct($dataStorageFactory, $messageStorageFactory, $searchCriteriaBuilder, $data, $processors);
     }
 
     /**
@@ -108,7 +107,7 @@ abstract class AbstractBuilder extends Service
      */
     protected function getProcessorInstance(string $typeId): ?ProcessorInterface
     {
-        return $this->builders[$typeId] ?? null;
+        return $this->processors[$typeId] ?? null;
     }
 
     /**
@@ -140,7 +139,7 @@ abstract class AbstractBuilder extends Service
     /**
      * @inheritDoc
      */
-    public function init($context): static
+    public function init2($context): static
     {
         foreach ($this->builders as $builder) {
             $builder->init($context);

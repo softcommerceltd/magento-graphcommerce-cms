@@ -164,7 +164,13 @@ class CmsPage implements ResolverInterface
             return [];
         }
 
-        $this->rowContentBuilder->execute($gcMetadata, (int) $page->getStoreId());
-        return $this->rowContentBuilder->getDataStorage()->getData();
+        try {
+            $this->rowContentBuilder->execute($gcMetadata, (int) $page->getStoreId());
+            $response = $this->rowContentBuilder->getDataStorage()->getData();
+        } catch (\DOMException) {
+            $response = [];
+        }
+
+        return $response;
     }
 }

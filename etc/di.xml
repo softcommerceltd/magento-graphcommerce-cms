@@ -13,7 +13,7 @@
     <preference for="SoftCommerce\GraphCommerceCms\Model\RowContentBuilderInterface" type="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder"/>
     <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder">
         <arguments>
-            <argument name="builders" xsi:type="array">
+            <argument name="processors" xsi:type="array">
                 <item name="cmsRowHeroBanner" xsi:type="array">
                     <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowHeroBanner</item>
                     <item name="sortOrder" xsi:type="number">10</item>
@@ -44,7 +44,7 @@
     </type>
     <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowHeroBanner">
         <arguments>
-            <argument name="builders" xsi:type="array">
+            <argument name="processors" xsi:type="array">
                 <item name="gc-asset" xsi:type="array">
                     <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\AssetBuilder</item>
                     <item name="sortOrder" xsi:type="number">10</item>
@@ -65,7 +65,7 @@
     </type>
     <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowLinksBuilder">
         <arguments>
-            <argument name="builders" xsi:type="array">
+            <argument name="processors" xsi:type="array">
                 <item name="gc-page-links" xsi:type="array">
                     <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\PageLinksBuilder</item>
                     <item name="sortOrder" xsi:type="number">10</item>
@@ -81,7 +81,7 @@
     </type>
     <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\PageLinksBuilder">
         <arguments>
-            <argument name="builders" xsi:type="array">
+            <argument name="processors" xsi:type="array">
                 <item name="gc-asset" xsi:type="array">
                     <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\AssetBuilder</item>
                     <item name="sortOrder" xsi:type="number">10</item>
@@ -97,7 +97,7 @@
     </type>
     <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowProductBuilder">
         <arguments>
-            <argument name="builders" xsi:type="array">
+            <argument name="processors" xsi:type="array">
                 <item name="gc-asset" xsi:type="array">
                     <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\AssetBuilder</item>
                     <item name="sortOrder" xsi:type="number">10</item>
@@ -118,7 +118,7 @@
     </type>
     <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowQuoteBuilder">
         <arguments>
-            <argument name="builders" xsi:type="array">
+            <argument name="processors" xsi:type="array">
                 <item name="gc-richtext" xsi:type="array">
                     <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RichTextBuilder</item>
                     <item name="sortOrder" xsi:type="number">10</item>
@@ -129,7 +129,7 @@
     </type>
     <type name="SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\RowSpecialBannerBuilder">
         <arguments>
-            <argument name="builders" xsi:type="array">
+            <argument name="processors" xsi:type="array">
                 <item name="gc-asset" xsi:type="array">
                     <item name="class" xsi:type="object">SoftCommerce\GraphCommerceCms\Model\RowContentBuilder\AssetBuilder</item>
                     <item name="sortOrder" xsi:type="number">10</item>

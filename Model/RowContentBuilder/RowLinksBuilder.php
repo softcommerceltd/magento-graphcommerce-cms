@@ -9,8 +9,8 @@ declare(strict_types=1);
 namespace SoftCommerce\GraphCommerceCms\Model\RowContentBuilder;
 
 use Magento\Framework\Exception\LocalizedException;
+use SoftCommerce\Core\Framework\Processor\ProcessorInterface;
 use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
-use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
 
 /**
  * @inheritDoc

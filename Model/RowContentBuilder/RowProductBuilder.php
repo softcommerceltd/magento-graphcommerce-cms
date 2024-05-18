@@ -26,9 +26,9 @@ use Magento\Store\Model\StoreManagerInterface;
 use Magento\Widget\Helper\Conditions;
 use SoftCommerce\Core\Framework\DataStorageInterfaceFactory;
 use SoftCommerce\Core\Framework\MessageStorageInterfaceFactory;
+use SoftCommerce\Core\Framework\Processor\ProcessorInterface;
 use SoftCommerce\GraphCommerceCms\Model\DomConverter\FromDomToArrayConverterInterface;
 use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
-use SoftCommerce\Profile\Model\ServiceAbstract\ProcessorInterface;
 use function preg_match;
 
 /**
@@ -102,7 +102,7 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
      * @param MessageStorageInterfaceFactory $messageStorageFactory
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
-     * @param array $builders
+     * @param array $processors
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
@@ -121,7 +121,7 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
         MessageStorageInterfaceFactory $messageStorageFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         array $data = [],
-        array $builders = []
+        array $processors = []
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->conditionsHelper = $conditionsHelper;
@@ -140,7 +140,7 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
             $messageStorageFactory,
             $searchCriteriaBuilder,
             $data,
-            $builders
+            $processors
         );
     }
 

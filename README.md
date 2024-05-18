@@ -10,7 +10,7 @@ This module extends PageBuilder's functionality by introducing custom components
 
 ## Supported PageBuilder Components
 - Use `cmsRowHeroBanner` component to build `RowHeroBanner` content as seen in demo;
-- Use `cmsRowLinks` component to build `RowLinks` content;
+- Use `CmsRowLinks` component to build `RowLinks` content;
 - Use `cmsRowProduct` component to build `RowProduct` catalog with ability to specify products by either category, SKU or custom rules;
 - Use `cmsRowSpecialBanner` component to build `RowSpecialBanner` content;
 - Use `cmsRowQuote` component to build `RowQuote` rich text content;
