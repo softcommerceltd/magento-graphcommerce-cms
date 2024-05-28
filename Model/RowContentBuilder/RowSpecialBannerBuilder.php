@@ -19,12 +19,17 @@ class RowSpecialBannerBuilder extends AbstractBuilder implements ProcessorInterf
     /**
      * @var string[]
      */
-    private array $metaDataMapping = [
+    protected array $metaDataMapping = [
         self::GC_ASSET => self::GQL_ASSET,
         self::GC_HEADING => self::GQL_TOPIC,
         self::GC_PAGE_LINKS => self::GQL_PAGE_LINKS,
         self::GC_RICHTEXT => self::GQL_COPY
     ];
+
+    /**
+     * @var string
+     */
+    protected string $typeId = self::CMS_ROW_SPECIAL_BANNER;
 
     /**
      * @inheritDoc
@@ -67,8 +72,8 @@ class RowSpecialBannerBuilder extends AbstractBuilder implements ProcessorInterf
         }
 
         if ($result) {
-            $result[self::GQL_ID] = $this->getUniqueId(self::CMS_ROW_SPECIAL_BANNER);
-            $result[self::TYPE_ID] = self::CMS_ROW_SPECIAL_BANNER;
+            $result[self::GQL_ID] = $this->getUniqueId($this->getTypeId());
+            $result[self::TYPE_ID] = $this->getTypeId();
             $context->getDataStorage()->addData($result);
         }
     }

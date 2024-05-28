@@ -74,9 +74,14 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
     private Visibility $catalogProductVisibility;
 
     /**
+     * @var string
+     */
+    protected string $typeId = self::CMS_ROW_PRODUCTS;
+
+    /**
      * @var string[]
      */
-    private array $metaDataMapping = [
+    protected array $metaDataMapping = [
         self::VARIANT => self::VARIANT,
         self::GC_HEADING => self::TITLE,
         self::GC_ASSET => self::GQL_ASSET,
@@ -103,6 +108,8 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
      * @param array $processors
+     * @param array $metaDataMapping
+     * @param string|null $typeId
      */
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
@@ -121,7 +128,9 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
         MessageStorageInterfaceFactory $messageStorageFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         array $data = [],
-        array $processors = []
+        array $processors = [],
+        array $metaDataMapping = [],
+        ?string $typeId = null
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->conditionsHelper = $conditionsHelper;
@@ -140,7 +149,9 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
             $messageStorageFactory,
             $searchCriteriaBuilder,
             $data,
-            $processors
+            $processors,
+            $metaDataMapping,
+            $typeId
         );
     }
 
@@ -196,8 +207,14 @@ class RowProductBuilder extends AbstractBuilder implements ProcessorInterface, M
         }
 
         if ($result) {
-            $result[self::GQL_ID] = $this->getUniqueId(self::CMS_ROW_PRODUCTS);
-            $result[self::TYPE_ID] = self::CMS_ROW_PRODUCTS;
+            $result[self::GQL_ID] = $this->getUniqueId($this->getTypeId());
+            $result[self::TYPE_ID] = $this->getTypeId();
+
+            // Page links - required field!
+            if (!isset($result[self::GQL_PAGE_LINKS])) {
+                $result[self::GQL_PAGE_LINKS] = [];
+            }
+
             $context->getDataStorage()->addData($result);
         }
     }

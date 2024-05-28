@@ -9,13 +9,15 @@
     <type name="SoftCommerce\GraphCommerceCms\Model\Resolver\CmsRowContentInterfaceTypeComposite">
         <arguments>
             <argument name="contentTypeIdMapping" xsi:type="array">
+                <item name="cmsBanner" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_BANNER</item>
                 <item name="cmsRowContent" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_CONTENT</item>
                 <item name="cmsRowHeroBanner" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_HERO_BANNER</item>
                 <item name="cmsRowLinks" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_LINKS</item>
                 <item name="cmsRowProduct" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_PRODUCTS</item>
-                <item name="cmsRowSpecialBanner" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_SPECIAL_BANNER</item>
                 <item name="cmsRowQuote" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_QUOTE</item>
-                <item name="cmsBanner" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_BANNER</item>
+                <item name="cmsRowServiceLinks" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_SERVICE_LINKS</item>
+                <item name="cmsRowSpecialBanner" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_SPECIAL_BANNER</item>
+                <item name="cmsRowText" xsi:type="const">SoftCommerce\GraphCommerceCms\Model\MetadataInterface::TYPE_ID_CMS_ROW_TEXT</item>
             </argument>
         </arguments>
     </type>

@@ -29,9 +29,6 @@ define([
      */
     Preview.prototype.element = null;
 
-    /**
-     * Bind events to add empty FAQ item when FAQ added and reinitialize accordion when FAQ item added
-     */
     Preview.prototype.bindEvents = function bindEvents() {
         const self = this;
 

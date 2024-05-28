@@ -4,28 +4,30 @@ This module extends PageBuilder's functionality by introducing custom components
 
 ## Features
 - Build rich page content by using Magento's native PageBuilder;
-- Create media assets that support both images, SVG and video formats;
-- Both CMS Pages and Blocks are supported;
+- Create media asset elements that support both images, SVG and video formats;
+- CMS Pages, Blocks, Widgets, Categories and Products are supported;
 - Add your own custom PageBuilder components;
 
 ## Supported PageBuilder Components
-- Use `cmsRowHeroBanner` component to build `RowHeroBanner` content as seen in demo;
-- Use `CmsRowLinks` component to build `RowLinks` content;
-- Use `cmsRowProduct` component to build `RowProduct` catalog with ability to specify products by either category, SKU or custom rules;
-- Use `cmsRowSpecialBanner` component to build `RowSpecialBanner` content;
-- Use `cmsRowQuote` component to build `RowQuote` rich text content;
+- Use `cmsRowHeroBanner` component to build elements with banner elements;
+- Use `CmsRowLinks` component to build link elements that support linking to categories, products and custom URL paths. 
+- Use `CmsRowProduct` component to build catalog elements with ability to specify products by either category, SKU or custom rules;
+- Use `CmsRowSpecialBanner` component to build banner content elements;
+- Use `CmsRowQuote` component to build rich text quotes;
+- Use `CmsRowText` component to build rich text content;
+- Use `CmsRowServiceLinks` component to build service links with the support of MUI icons;
 
 ## Supported PageBuilder Elements
 - `gc-asset` - used to serve images and video files;
 - `gc-heading` - used to provide a heading for components that require titles.
 - `gc-page-links` - used to provide links that support either a direct, product, category or CMS page URL;
 - `gc-products` - used to provide product listing defined by either a category, SKUs or a custom rule;
-- `gc-richtext` - used to provide content built with the help of wysiwyg;
+- `gc-richtext` - used to provide content built with the wysiwyg as an AST format;
 
 ## Compatibility
 - Open Source >= 2.4.4
 
-## Installation
+## Magento Extension Installation
 Using composer
 
 ```
@@ -50,6 +52,75 @@ In development mode:
 ```
 bin/magento setup:di:compile
 ```
+
+## GraphCommerce Node Package Installation
+Using YARN [recommended]
+
+```
+yarn add @softcommerce/graphcommerce-magento-cms
+```
+Using NPM
+
+```
+npm install @softcommerce/graphcommerce-magento-cms
+```
+
+## Magento Demo [sample] Project Installation
+
+Install latest magento instance
+
+```sh
+# Install Magento
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento.graphcommerce
+```
+
+Create DB & USER (replace credentials & password as required)
+```
+CREATE DATABASE magento_graphcommerce;
+CREATE USER 'magento_graphcommerce'@'localhost' IDENTIFIED BY 'magento.graphcommerce.pwd';
+GRANT ALL PRIVILEGES ON magento_graphcommerce.* TO 'magento_graphcommerce'@'localhost';
+GRANT SUPER ON *.* TO magento_graphcommerce@'localhost';
+GRANT PROCESS ON *.* TO magento_graphcommerce@localhost;
+FLUSH PRIVILEGES;
+```
+
+Install magento instance
+
+```sh
+# Install Magento
+# Replace opensearch with elasticsearch if you have latter one installed.
+# Replace user credentials if required.
+# https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/advanced
+bin/magento setup:install \
+--base-url=http://magento.graphcommerce/ \
+--db-host=localhost \
+--db-name=magento_graphcommerce \
+--db-user=magento_graphcommerce \
+--db-password=magento.graphcommerce.pwd \
+--admin-firstname=Magento \
+--admin-lastname=GraphCommerce \
+--admin-email=magento-gc@example.com \
+--admin-user=magento.graphcommerce \
+--admin-password=magento.graphcommerce.pwd \
+--language=en_GB \
+--currency=GBP \
+--timezone=Europe/London \
+--use-rewrites=1 \
+--search-engine=opensearch \
+--opensearch-host=localhost \
+--opensearch-index-prefix=magento.graphcommerce \
+--opensearch-port=9200
+```
+
+Install sample data
+
+```sh
+# Install Magento
+bin/magento deploy:mode:set developer
+bin/magento sampledata:deploy
+```
+
+
 
 ## Support
 Soft Commerce Ltd <br />

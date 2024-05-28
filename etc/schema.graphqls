@@ -43,6 +43,12 @@ type CmsPage implements RoutableInterface @doc(description: "Contains details ab
     cmsRowContent: [CmsRowContentInterface!]! @doc(description: "Cms row content.")
 }
 
+## extends Category query builder
+interface CategoryInterface {
+    gc_asset: CmsAsset @resolver(class: "SoftCommerce\\GraphCommerceCms\\Model\\Resolver\\Category\\GcAsset") @doc(description: "GC media asset.")
+    gc_metadata: [CmsRowContentInterface!]! @resolver(class: "SoftCommerce\\GraphCommerceCms\\Model\\Resolver\\Category\\GcMetadata") @doc(description: "Category row content.")
+}
+
 ## CMS Row Elements
 type CmsAsset @doc(description: "CMS Asset used for media images and videos.") {
     url: String! @doc(description: "Asset URL.")
@@ -58,6 +64,7 @@ type CmsPageLink @doc(description: "Cms Page Link.") {
     id: String @doc(description: "CMS page link ID.")
     asset: CmsAsset @doc(description: "CMS page link asset.")
     description: CmsRichText @doc(description: "CMS RichText AST.")
+    icon: String @doc(description: "CMS page link MUI Icon.")
 }
 type CmsRichText @doc(description: "Cms RichText.") {
     raw: CmsRichTextAST! @doc(description: "Cms RichText in raw AST format.")
@@ -80,19 +87,27 @@ type CmsRowLinks implements CmsRowContentInterface @doc(description: "Defines an
     rowLinksCopy: CmsRichText @doc(description: "CMS RichText AST.")
 }
 type CmsRowProduct implements CmsRowContentInterface @doc(description: "Defines an array of CMS row products.") {
-    title: String! @doc(description: "CMS row links title.")
-    identity: String! @doc(description: "CMS row links variant.")
-    asset: CmsAsset @doc(description: "CMS page links asset.")
+    title: String! @doc(description: "CMS row product title.")
+    identity: String! @doc(description: "CMS row product identity.")
+    asset: CmsAsset @doc(description: "CMS row product asset.")
     productCopy: CmsRichText @doc(description: "CMS RichText AST.")
     variant: RowProductVariants @doc(description: "CMS row product variant.")
+}
+type CmsRowQuote implements CmsRowContentInterface @doc(description: "Defines a CMS row quote.") {
+    quote: CmsRichText! @doc(description: "CMS RichText AST.")
 }
 type CmsRowSpecialBanner implements CmsRowContentInterface @doc(description: "Defines a CMS row special banner.") {
     topic: String! @doc(description: "Special banner topic.")
     asset: CmsAsset @doc(description: "CMS page links asset.")
     copy: CmsRichText! @doc(description: "CMS RichText AST.")
 }
-type CmsRowQuote implements CmsRowContentInterface @doc(description: "Defines a CMS row quote.") {
-    quote: CmsRichText! @doc(description: "CMS row quote text.")
+type CmsRowText implements CmsRowContentInterface @doc(description: "Defines a CMS row text.") {
+    text: CmsRichText! @doc(description: "CMS RichText AST.")
+}
+type CmsRowServiceLinks implements CmsRowContentInterface @doc(description: "Defines a CMS row special banner.") {
+    rowServiceTitle: String @doc(description: "Cms row service title.")
+    pageLinks: [CmsPageLink!]! @doc(description: "An array of service links.")
+    rowServiceCopy: CmsRichText @doc(description: "CMS RichText AST.")
 }
 
 scalar CmsRichTextAST @doc(description: "Slate-compatible RichText AST.")

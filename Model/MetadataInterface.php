@@ -22,9 +22,11 @@ interface MetadataInterface
     public const CMS_ROW_HERO_BANNER = 'cmsRowHeroBanner';
     public const CMS_ROW_LINKS = 'cmsRowLinks';
     public const CMS_ROW_PRODUCTS = 'cmsRowProduct';
+    public const CMS_ROW_SERVICE_LINKS = 'cmsRowServiceLinks';
     public const CMS_ROW_SPECIAL_BANNER = 'cmsRowSpecialBanner';
     public const CMS_ROW_QUOTE = 'cmsRowQuote';
     public const CMS_BANNER = 'cmsBanner';
+    public const CMS_ROW_TEXT = 'cmsRowText';
     public const CONTENT = 'content';
 
     /**
@@ -34,11 +36,13 @@ interface MetadataInterface
     public const TYPE_ID_CMS_ROW_HERO_BANNER = 'CmsRowHeroBanner';
     public const TYPE_ID_CMS_ROW_LINKS = 'CmsRowLinks';
     public const TYPE_ID_CMS_ROW_PRODUCTS = 'CmsRowProduct';
+    public const TYPE_ID_CMS_ROW_SERVICE_LINKS = 'CmsRowServiceLinks';
     public const TYPE_ID_CMS_ROW_SPECIAL_BANNER = 'CmsRowSpecialBanner';
     public const TYPE_ID_CMS_ROW_QUOTE = 'CmsRowQuote';
     public const TYPE_ID_CMS_BANNER = 'CmsBanner';
     public const TYPE_ID_CMS_PAGE_LINK = 'CmsPageLink';
     public const TYPE_ID_CMS_ROW_CONTENT_INTERFACE = 'CmsRowContentInterface';
+    public const TYPE_ID_CMS_ROW_TEXT = 'CmsRowText';
 
     /**
      * ROW LINKS VARIANT
@@ -67,10 +71,13 @@ interface MetadataInterface
     public const GQL_ROW_LINKS_COPY = 'rowLinksCopy';
     public const GQL_PAGE_LINKS = 'pageLinks';
     public const GQL_ASSET = 'asset';
+    public const GQL_ICON = 'icon';
     public const GQL_HERO_ASSET = 'heroAsset';
     public const GQL_PRODUCT_COPY = 'productCopy';
     public const GQL_TOPIC = 'topic';
     public const GQL_ROW_PRODUCTS = 'rowProduct';
+    public const GQL_ROW_SERVICE_COPY = 'rowServiceCopy';
+    public const GQL_ROW_SERVICE_TITLE = 'rowServiceTitle';
 
     /**
      * NodeElement attributes
@@ -88,6 +95,8 @@ interface MetadataInterface
     public const GC_ROW_PRODUCT = 'gc-row-product';
     public const GC_ROW_QUOTE = 'gc-row-quote';
     public const GC_ROW_SPECIAL_BANNER = 'gc-row-special-banner';
+    public const GC_ROW_SERVICE_LINKS = 'gc-row-service-links';
+    public const GC_ROW_TEXT = 'gc-row-text';
 
     /**
      * PageBuilder Elements
@@ -119,5 +128,6 @@ interface MetadataInterface
     public const QUOTE = 'quote';
     public const IMAGE = 'image';
     public const ASSET = 'asset';
+    public const MUI_ICON = 'mui_icon';
     public const VARIANT = 'variant';
 }

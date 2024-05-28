@@ -15,11 +15,10 @@
         <field name="gc_metadata" formElement="wysiwyg">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">page</item>
+                    <item name="source" xsi:type="string">category</item>
                 </item>
             </argument>
             <settings>
-                <scopeLabel>[global]</scopeLabel>
                 <label translate="true">Row Content</label>
                 <dataType>text</dataType>
                 <dataScope>gc_metadata</dataScope>

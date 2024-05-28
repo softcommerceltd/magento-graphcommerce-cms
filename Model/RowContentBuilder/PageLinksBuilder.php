@@ -45,12 +45,18 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
     /**
      * @var string[]
      */
-    private array $metadataMapping = [
+    protected array $metadataMapping = [
         self::TITLE => self::TITLE,
         self::LINK => self::URL,
         self::CONTENT => self::DESCRIPTION,
-        self::ASSET => self::GQL_ASSET
+        self::ASSET => self::GQL_ASSET,
+        self::MUI_ICON => self::GQL_ICON
     ];
+
+    /**
+     * @var string
+     */
+    protected string $typeId = self::GQL_PAGE_LINKS;
 
     /**
      * @param GetUrlByEntityIdInterface $getUrlByEntityId
@@ -64,6 +70,8 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
      * @param array $processors
+     * @param array $metaDataMapping
+     * @param string|null $typeId
      */
     public function __construct(
         GetUrlByEntityIdInterface $getUrlByEntityId,
@@ -76,7 +84,9 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
         MessageStorageInterfaceFactory $messageStorageFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         array $data = [],
-        array $processors = []
+        array $processors = [],
+        array $metaDataMapping = [],
+        ?string $typeId = null
     ) {
         $this->getUrlByEntityId = $getUrlByEntityId;
         $this->systemConfig = $systemConfig;
@@ -89,7 +99,9 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
             $messageStorageFactory,
             $searchCriteriaBuilder,
             $data,
-            $processors
+            $processors,
+            $metaDataMapping,
+            $typeId
         );
     }
 
@@ -126,6 +138,20 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
                 continue;
             }
 
+            if ($typeId === self::MUI_ICON) {
+                $content = str_replace(
+                    ' ',
+                    '',
+                    ucwords(
+                        str_replace(
+                            [' ', '_'],
+                            ' ',
+                            ucwords($content)
+                        )
+                    )
+                );
+            }
+
             if ($typeId !== self::LINK || !str_contains($content, '{{widget')) {
                 $result[$metadata] = $content;
                 continue;
@@ -141,8 +167,8 @@ class PageLinksBuilder extends AbstractBuilder implements ProcessorInterface, Me
                 $result[self::TITLE] = '';
             }
 
-            $result[self::GQL_ID] = $this->getUniqueId(self::GQL_PAGE_LINKS);
-            $result[self::TYPE_ID] = self::GQL_PAGE_LINKS;
+            $result[self::GQL_ID] = $this->getUniqueId($this->getTypeId());
+            $result[self::TYPE_ID] = $this->getTypeId();
         }
 
         $this->getDataStorage()->setData($result);

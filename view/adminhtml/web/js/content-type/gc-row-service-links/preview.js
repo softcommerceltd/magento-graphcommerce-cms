@@ -6,8 +6,10 @@ define([
     'Magento_PageBuilder/js/events',
     'Magento_PageBuilder/js/content-type/preview-collection',
     'Magento_PageBuilder/js/content-type-factory',
-    'Magento_PageBuilder/js/config'
-], function ($, _, ko, $t, events, PreviewCollection, createContentType, pageBuilderConfig) {
+    'Magento_PageBuilder/js/config',
+    'Magento_PageBuilder/js/content-type-menu/option',
+    'mage/accordion',
+], function ($, _, ko, $t, events, PreviewCollection, createContentType, pageBuilderConfig, option) {
     'use strict';
 
     /**
@@ -22,9 +24,6 @@ define([
 
     Preview.prototype = Object.create(PreviewCollection.prototype);
 
-    /**
-     * Root element
-     */
     Preview.prototype.element = null;
 
     Preview.prototype.bindEvents = function bindEvents() {
@@ -32,19 +31,15 @@ define([
 
         PreviewCollection.prototype.bindEvents.call(this);
 
-        events.on("gc-row-product:dropAfter", function (args) {
+        events.on("gc-row-service-links:dropAfter", function (args) {
             if (args.id === self.contentType.id && self.contentType.children().length === 0) {
                 self.addHeader();
                 self.addPageLinks();
                 self.addRichText();
-                self.addProducts();
             }
         });
     };
 
-    /**
-     * Add heading element
-     */
     Preview.prototype.addHeader = function () {
         const self = this;
         createContentType(
@@ -88,18 +83,23 @@ define([
     };
 
     /**
-     * Add products element
+     * Return content menu options
+     *
+     * @returns {object}
      */
-    Preview.prototype.addProducts = function () {
+    Preview.prototype.retrieveOptions = function () {
         const self = this;
-        createContentType(
-            pageBuilderConfig.getContentTypeConfig("gc-products"),
-            this.contentType,
-            this.contentType.stageId,
-            {}
-        ).then(function (container) {
-            self.contentType.addChild(container);
+        const options = PreviewCollection.prototype.retrieveOptions.call(this);
+
+        options.add = new option({
+            preview: this,
+            icon: "<i class='icon-pagebuilder-add'></i>",
+            title: "Add Page Links",
+            action: self.addPageLinks,
+            classes: ["add-child"],
+            sort: 10
         });
+        return options;
     };
 
     /**

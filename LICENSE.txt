@@ -22,6 +22,6 @@
 * @category  SoftCommerce                                                       *
 * @package   SoftCommerce\Core                                                  *
 * @copyright © 2021 Soft Commerce Ltd. All Rights Reserved.                     *
-* @link      https://softcommerce.com                                           *
+* @link      https://softcommerce.io                                            *
 * @license   https://softcommerce.co.uk/pub/license/index.html                  *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

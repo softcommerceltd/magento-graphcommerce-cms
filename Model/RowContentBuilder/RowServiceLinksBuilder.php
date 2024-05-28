@@ -8,29 +8,27 @@ declare(strict_types=1);
 
 namespace SoftCommerce\GraphCommerceCms\Model\RowContentBuilder;
 
-use Magento\Framework\Exception\LocalizedException;
 use SoftCommerce\Core\Framework\Processor\ProcessorInterface;
 use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
 
 /**
  * @inheritDoc
  */
-class RowLinksBuilder extends AbstractBuilder implements ProcessorInterface, MetadataInterface
+class RowServiceLinksBuilder extends AbstractBuilder implements ProcessorInterface, MetadataInterface
 {
     /**
      * @var string[]
      */
     protected array $metaDataMapping = [
-        self::GC_HEADING => self::TITLE,
-        self::GC_LINKS_VARIANT => self::GQL_LINKS_VARIANT,
         self::GC_PAGE_LINKS => self::GQL_PAGE_LINKS,
-        self::GC_RICHTEXT => self::GQL_ROW_LINKS_COPY
+        self::GC_HEADING => self::GQL_ROW_SERVICE_TITLE,
+        self::GC_RICHTEXT => self::GQL_ROW_SERVICE_COPY
     ];
 
     /**
      * @var string
      */
-    protected string $typeId = self::CMS_ROW_LINKS;
+    protected string $typeId = self::CMS_ROW_SERVICE_LINKS;
 
     /**
      * @inheritDoc
@@ -58,7 +56,7 @@ class RowLinksBuilder extends AbstractBuilder implements ProcessorInterface, Met
             }
 
             try {
-                $data = $this->buildData($typeId, $response[self::CHILDREN]);
+                $data = $this->buildData($typeId, $response[self::CHILDREN] ?? []);
             } catch (\Exception) {
                 continue;
             }
@@ -77,23 +75,5 @@ class RowLinksBuilder extends AbstractBuilder implements ProcessorInterface, Met
             $result[self::TYPE_ID] = $this->getTypeId();
             $context->getDataStorage()->addData($result);
         }
-    }
-
-    /**
-     * @param string $typeId
-     * @param array $data
-     * @return array
-     * @throws LocalizedException
-     */
-    private function buildData2(string $typeId, array $data): array
-    {
-        if (empty($data[self::CHILDREN])
-            || !$processor = $this->getProcessorInstance($typeId)
-        ) {
-            return [];
-        }
-
-        $processor->execute($data[self::CHILDREN]);
-        return $processor->getDataStorage()->getData();
     }
 }

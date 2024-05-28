@@ -143,15 +143,15 @@ class RowContentBuilder extends Service implements RowContentBuilderInterface, M
             return;
         }
 
-        $dataTypeId = null;
+        $typeId = null;
         foreach ($attributes as $attribute) {
             if ($attribute->name === self::DATA_CONTENT_TYPE) {
-                $dataTypeId = $attribute->value;
+                $typeId = $attribute->value;
             }
         }
 
-        if (!$dataTypeId
-            || !$processor = $this->getProcessorInstance($dataTypeId)
+        if (!$typeId
+            || !$processor = $this->getProcessorInstance($typeId)
         ) {
             return;
         }

@@ -14,14 +14,19 @@ use SoftCommerce\GraphCommerceCms\Model\MetadataInterface;
 /**
  * @inheritDoc
  */
-class RowQuoteBuilder extends AbstractBuilder implements ProcessorInterface, MetadataInterface
+class RowTextBuilder extends AbstractBuilder implements ProcessorInterface, MetadataInterface
 {
     /**
      * @var string[]
      */
-    private array $metaDataMapping = [
-        self::GC_RICHTEXT => self::QUOTE
+    protected array $metaDataMapping = [
+        self::GC_RICHTEXT => self::TEXT
     ];
+
+    /**
+     * @var string
+     */
+    protected string $typeId = self::CMS_ROW_TEXT;
 
     /**
      * @inheritDoc
@@ -55,8 +60,8 @@ class RowQuoteBuilder extends AbstractBuilder implements ProcessorInterface, Met
         }
 
         if ($result) {
-            $result[self::GQL_ID] = $this->getUniqueId(self::CMS_ROW_QUOTE);
-            $result[self::TYPE_ID] = self::CMS_ROW_QUOTE;
+            $result[self::GQL_ID] = $this->getUniqueId($this->getTypeId());
+            $result[self::TYPE_ID] = $this->getTypeId();
             $context->getDataStorage()->addData($result);
         }
     }

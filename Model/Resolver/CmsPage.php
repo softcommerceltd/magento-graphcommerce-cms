@@ -150,7 +150,8 @@ class CmsPage implements ResolverInterface
             PageInterface::META_KEYWORDS => $page->getMetaKeywords(),
             PageInterface::PAGE_ID => $page->getId(),
             PageInterface::IDENTIFIER => $page->getIdentifier(),
-            MetadataInterface::CMS_ROW_CONTENT => $this->getRowContentData($page)
+            MetadataInterface::CMS_ROW_CONTENT => $this->getRowContentData($page),
+            'model' => $page
         ];
     }
 

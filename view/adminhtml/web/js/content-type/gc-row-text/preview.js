@@ -32,7 +32,7 @@ define([
 
         PreviewCollection.prototype.bindEvents.call(this);
 
-        events.on("gc-row-quote:dropAfter", function (args) {
+        events.on("gc-row-text:dropAfter", function (args) {
             if (args.id === self.contentType.id && self.contentType.children().length === 0) {
                 self.addRichText();
             }

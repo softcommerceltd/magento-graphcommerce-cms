@@ -19,11 +19,16 @@ class RowHeroBanner extends AbstractBuilder implements ProcessorInterface, Metad
     /**
      * @var string[]
      */
-    private array $metaDataMapping = [
+    protected array $metaDataMapping = [
         self::GC_ASSET => self::GQL_HERO_ASSET,
         self::GC_PAGE_LINKS => self::GQL_PAGE_LINKS,
         self::GC_RICHTEXT => self::GQL_COPY
     ];
+
+    /**
+     * @var string
+     */
+    protected string $typeId = self::CMS_ROW_HERO_BANNER;
 
     /**
      * @inheritDoc
@@ -61,8 +66,8 @@ class RowHeroBanner extends AbstractBuilder implements ProcessorInterface, Metad
         }
 
         if ($result) {
-            $result[self::GQL_ID] = $this->getUniqueId(self::CMS_ROW_HERO_BANNER);
-            $result[self::TYPE_ID] = self::CMS_ROW_HERO_BANNER;
+            $result[self::GQL_ID] = $this->getUniqueId($this->getTypeId());
+            $result[self::TYPE_ID] = $this->getTypeId();
             $context->getDataStorage()->addData($result);
         }
     }

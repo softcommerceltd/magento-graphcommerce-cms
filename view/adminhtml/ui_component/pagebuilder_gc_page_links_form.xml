@@ -93,6 +93,23 @@
                 <urlTypes class="Magento\Ui\Model\UrlInput\LinksConfigProvider"/>
             </settings>
         </urlInput>
+        <field name="mui_icon" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>mui_icon</dataScope>
+                <dataType>text</dataType>
+                <label translate="true">MUI Icon</label>
+                <tooltip>
+                    <description translate="true">
+                        <![CDATA[<a href="https://fonts.google.com/icons" target="_blank">MUI Material Icons</a>]]>
+                    </description>
+                </tooltip>
+            </settings>
+        </field>
         <field name="asset" formElement="imageUploader">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

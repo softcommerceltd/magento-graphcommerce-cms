@@ -13,8 +13,8 @@
           master_component="Magento_PageBuilder/js/content-type/master-collection"
           form="pagebuilder_gc_row_container_form"
           menu_section="gc_components"
-          icon="icon-pagebuilder-products"
-          sortOrder="40"
+          icon="icon-pagebuilder-text"
+          sortOrder="50"
           translate="label">
         <parents default_policy="deny">
             <parent name="root-container" policy="allow"/>

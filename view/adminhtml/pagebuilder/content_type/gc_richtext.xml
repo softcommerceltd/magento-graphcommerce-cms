@@ -20,6 +20,8 @@
             <parent name="gc-row-links" policy="allow"/>
             <parent name="gc-row-product" policy="allow"/>
             <parent name="gc-row-quote" policy="allow"/>
+            <parent name="gc-row-service-links" policy="allow"/>
+            <parent name="gc-row-text" policy="allow"/>
         </parents>
         <children default_policy="deny"/>
         <is_system>true</is_system>

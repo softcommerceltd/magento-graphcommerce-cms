@@ -24,7 +24,7 @@
                 <dataType>text</dataType>
                 <dataScope>gc_metadata</dataScope>
                 <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
                 </validation>
                 <additionalClasses>
                     <class name="admin__field-wide">true</class>

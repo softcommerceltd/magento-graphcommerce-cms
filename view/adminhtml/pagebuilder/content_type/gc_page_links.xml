@@ -49,6 +49,9 @@
                     <element name="content">
                         <html name="content"/>
                     </element>
+                    <element name="mui_icon">
+                        <html name="mui_icon"/>
+                    </element>
                 </elements>
             </appearance>
         </appearances>

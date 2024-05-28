@@ -60,6 +60,11 @@ abstract class AbstractBuilder extends Processor
     protected StoreManagerInterface $storeManager;
 
     /**
+     * @var string[]
+     */
+    protected array $metaDataMapping = [];
+
+    /**
      * @param FromDomToArrayConverterInterface $domConverter
      * @param ExtractAssetsFromContentInterface $extractAssetsFromContent
      * @param SerializerInterface $serializer
@@ -69,6 +74,8 @@ abstract class AbstractBuilder extends Processor
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
      * @param array $processors
+     * @param array $metaDataMapping
+     * @param string|null $typeId
      */
     public function __construct(
         FromDomToArrayConverterInterface $domConverter,
@@ -79,12 +86,20 @@ abstract class AbstractBuilder extends Processor
         MessageStorageInterfaceFactory $messageStorageFactory,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         array $data = [],
-        array $processors = []
+        array $processors = [],
+        array $metaDataMapping = [],
+        ?string $typeId = null
     ) {
         $this->domConverter = $domConverter;
         $this->extractAssetsFromContent = $extractAssetsFromContent;
         $this->serializer = $serializer;
         $this->storeManager = $storeManager;
+        if ($metaDataMapping) {
+            $this->metaDataMapping = $metaDataMapping;
+        }
+        if ($typeId) {
+            $this->typeId = $typeId;
+        }
         parent::__construct($dataStorageFactory, $messageStorageFactory, $searchCriteriaBuilder, $data, $processors);
     }
 
@@ -115,6 +130,23 @@ abstract class AbstractBuilder extends Processor
      * @param int|null $storeId
      * @return string|null
      */
+    protected function getMediaPath(string $path, ?int $storeId = null): ?string
+    {
+        try {
+            $store = $this->storeManager->getStore($storeId);
+        } catch (\Exception) {
+            return null;
+        }
+
+        $path = trim($path, '/');
+        return $store->getBaseMediaDir() . '/' . $path;
+    }
+
+    /**
+     * @param string $path
+     * @param int|null $storeId
+     * @return string|null
+     */
     protected function getMediaUrl(string $path, ?int $storeId = null): ?string
     {
         try {
@@ -134,18 +166,6 @@ abstract class AbstractBuilder extends Processor
     protected function getUniqueId(?string $prefix = null): string
     {
         return uniqid($prefix ? $prefix . '_' : '');
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function init2($context): static
-    {
-        foreach ($this->builders as $builder) {
-            $builder->init($context);
-        }
-
-        return parent::init($context);
     }
 
     /**
