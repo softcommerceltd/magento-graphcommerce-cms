@@ -30,7 +30,8 @@ This module extends PageBuilder's functionality by introducing custom components
 ## Magento Extension Installation
 Using composer
 
-```
+```sh
+# GH source: https://github.com/softcommerceltd/magento-graphcommerce-cms
 composer require softcommerce/module-graphcommerce-cms
 ```
 
@@ -56,12 +57,14 @@ bin/magento setup:di:compile
 ## GraphCommerce Node Package Installation
 Using YARN [recommended]
 
-```
+```sh
+# GH source: https://github.com/softcommerceltd/graphcommerce-magento-cms
 yarn add @softcommerce/graphcommerce-magento-cms
 ```
 Using NPM
 
-```
+```sh
+# GH source: https://github.com/softcommerceltd/graphcommerce-magento-cms
 npm install @softcommerce/graphcommerce-magento-cms
 ```
 
@@ -71,6 +74,7 @@ Install latest magento instance
 
 ```sh
 # Install Magento
+# Source: https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/composer
 composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento.graphcommerce
 ```
 
@@ -84,15 +88,15 @@ GRANT PROCESS ON *.* TO magento_graphcommerce@localhost;
 FLUSH PRIVILEGES;
 ```
 
-Install magento instance
+Install magento application
 
 ```sh
 # Install Magento
-# Replace opensearch with elasticsearch if you have latter one installed.
+# Replace opensearch with elasticsearch if the latter one installed.
 # Replace user credentials if required.
-# https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/advanced
+# Source: https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/composer
 bin/magento setup:install \
---base-url=http://magento.graphcommerce/ \
+--base-url=https://magento.graphcommerce/ \
 --db-host=localhost \
 --db-name=magento_graphcommerce \
 --db-user=magento_graphcommerce \
@@ -115,12 +119,40 @@ bin/magento setup:install \
 Install sample data
 
 ```sh
-# Install Magento
+# Install Magento sample data
 bin/magento deploy:mode:set developer
 bin/magento sampledata:deploy
+# Install GraphCommerce sample data
+# GH Source:
+# https://github.com/softcommerceltd/magento-graphcommerce-cms-sample-data
+# https://github.com/softcommerceltd/magento-graphcommerce-cms-sample-data-media
+composer require softcommerce/module-graphcommerce-cms-sample-data
+# Update the application
+bin/magento setup:upgrade
+# Compile the application code
+bin/magento setup:di:compile
+# Run indexing
+bin/magento indexer:reindex
 ```
 
+*** Note: SSL certificate is required. Use 
 
+## GraphCommerce PWA Demo Project
+
+Both Magento & GraphCommerce plugins require some modifications to GC React project pages.
+Use the demo below as a starting point for your project. 
+
+```sh
+# Clone demo project
+# GH Source: https://github.com/softcommerceltd/magento-graphcommerce-pwa
+git clone -b main --single-branch git@github.com:softcommerceltd/magento-graphcommerce-pwa.git
+```
+
+Create DB & USER (replace credentials & password as required)
+```
+Configre graphcommerce.config.js to include magento canonical and endpoint URLs as required. 
+Change images hostname to your prefered domain in next.config.js file.
+```
 
 ## Support
 Soft Commerce Ltd <br />

@@ -5,7 +5,8 @@
         "php": "~8.0.0||~8.1.0||~8.2.0||~8.3.0",
         "magento/module-cms-graph-ql": "^100.4",
         "magento/module-page-builder": "2.2.*",
-        "softcommerce/module-core": "^1.5"
+        "softcommerce/module-core": "^1.5",
+        "softcommerce/module-seosuite": "*"
     },
     "type": "magento2-module",
     "license": [
@@ -20,5 +21,5 @@
             "SoftCommerce\\GraphCommerceCms\\": ""
         }
     },
-    "version": "1.0.3"
+    "version": "1.0.4"
 }

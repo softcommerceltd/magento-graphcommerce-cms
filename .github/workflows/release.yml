@@ -13,12 +13,9 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          name: 1.0.3 [CE|EE|ECE 2.4.0-2.4.7] 28 May 2024
-          tag_name: 1.0.3
+          name: 1.0.4 [CE|EE|ECE 2.4.0-2.4.7] 29 May 2024
+          tag_name: 1.0.4
           body: |-
-            ### softcommerce/module-graphcommerce-cms [1.0.3]
-            - **Feature**: Add support of custom pagebuilder elements for categories [#4]
-            - **Feature**: Add `CmsRowServiceLinks` element to pagebuilder to enable creation of service links [#3]
-            - **Feature**: Add `CmsRowText` component to pagebuilder to enable creation of rich text AST elements [#2]
+            - **Enhancement**: Add version requirements for `softcommerce/module-core` module [#5]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,5 +1,8 @@
 ## Changelog
 
+### Version 1.0.4
+- **Enhancement**: Add version requirements for `softcommerce/module-core` module [#5]
+
 ### Version 1.0.3
 - **Feature**: Add support of custom pagebuilder elements for categories [#4]
 - **Feature**: Add `CmsRowServiceLinks` element to pagebuilder to enable creation of service links [#3]
