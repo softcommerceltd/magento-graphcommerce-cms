@@ -120,6 +120,7 @@ Install sample data
 
 ```sh
 # Install Magento sample data
+# Source https://experienceleague.adobe.com/en/docs/commerce-operations/installation-guide/next-steps/sample-data/composer-packages
 bin/magento deploy:mode:set developer
 bin/magento sampledata:deploy
 # Install GraphCommerce sample data
@@ -135,7 +136,7 @@ bin/magento setup:di:compile
 bin/magento indexer:reindex
 ```
 
-*** Note: SSL certificate is required. Use 
+*** Note: SSL certificate is required. Use free one from https://letsencrypt.org/
 
 ## GraphCommerce PWA Demo Project
 
