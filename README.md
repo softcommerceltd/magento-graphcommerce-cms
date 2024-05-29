@@ -130,8 +130,14 @@ bin/magento sampledata:deploy
 composer require softcommerce/module-graphcommerce-cms-sample-data
 # Update the application
 bin/magento setup:upgrade
+```
+
+Set the application to production
+
+```sh
 # Compile the application code
-bin/magento setup:di:compile
+# and generate static files for production environment
+bin/magento deploy:mode:set production
 # Run indexing
 bin/magento indexer:reindex
 ```
@@ -155,12 +161,7 @@ Configre graphcommerce.config.js to include magento canonical and endpoint URLs 
 Change images hostname to your prefered domain in next.config.js file.
 ```
 
-## Support
-Soft Commerce Ltd <br />
-support@softcommerce.io
-
 ## License
-Each source file included in this package is licensed under OSL 3.0.
 
 [Open Software License (OSL 3.0)](https://opensource.org/licenses/osl-3.0.php).
 Please see `LICENSE.txt` for full details of the OSL 3.0 license.
