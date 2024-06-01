@@ -27,6 +27,9 @@ This module extends PageBuilder's functionality by introducing custom components
 ## Compatibility
 - Open Source >= 2.4.4
 
+## Demo
+https://graphcommerce-cms.softcommerce.dev/
+
 ## Magento Extension Installation
 Using composer
 
