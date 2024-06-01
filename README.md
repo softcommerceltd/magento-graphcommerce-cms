@@ -158,11 +158,8 @@ Use the demo below as a starting point for your project.
 git clone -b main --single-branch git@github.com:softcommerceltd/magento-graphcommerce-pwa.git
 ```
 
-Create DB & USER (replace credentials & password as required)
-```
-Configre graphcommerce.config.js to include magento canonical and endpoint URLs as required. 
-Change images hostname to your prefered domain in next.config.js file.
-```
+- Edit graphcommerce.config.js file to change the canonical and endpoint URLs as required.
+- Edit next.config.js file to change images hostname configuration.
 
 ## License
 
