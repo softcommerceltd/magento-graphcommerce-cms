@@ -9,8 +9,9 @@
     <module name="SoftCommerce_GraphCommerceCms">
         <sequence>
             <module name="Magento_CmsGraphQl"/>
-            <module name="Magento_Pagebuilder"/>
+            <module name="Magento_PageBuilder"/>
             <module name="SoftCommerce_Core"/>
+            <module name="SoftCommerce_SeoSuite"/>
         </sequence>
     </module>
 </config>

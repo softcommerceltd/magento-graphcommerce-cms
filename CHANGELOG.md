@@ -1,5 +1,9 @@
 ## Changelog
 
+### Version 1.0.5
+- **Compatibility**: Add dependency for `SoftCommerce_SeoSuite`;
+- **Fix**: Fix dependency module sequence component name declaration for `Magento_PageBuilder` in module.xml [#7]
+
 ### Version 1.0.4
 - **Enhancement**: Add version requirements for `softcommerce/module-core` module [#5]
 
